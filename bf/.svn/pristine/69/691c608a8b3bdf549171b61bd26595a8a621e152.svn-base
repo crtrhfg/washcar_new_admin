@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/Charts.js"></script>
+        <script type="text/javascript" src="js/tjmsg.js"></script>
+
+	</head>
+	<body>
+	<div style="overflow: scroll;height: 883px;">
+		<div class="pieChart">
+	    	<div class="wrap1">
+	            <h3></h3>
+	            <div id="main" style="width:465px;height:300px; "></div>
+	        	<script type="text/javascript">
+	                $.ajax({
+	                    url: 'http://www.nbinbi.com/waterObj/index.php/Admin/StatisticalReport/returnCountRateMonthUser',
+	                    dataType: 'jsonp',
+	                    success: function (data) {
+	                        data.status==-3&&(dialog(data.msg),setTimeout(function (){window.location.href="shouye.html"},2000));
+	                        var legendData = [];
+	                        var seriesData = [];
+	                        $.each(data.data, function (index, val) {
+	                            legendData.push(val.rate);
+	                            seriesData.push({'name': val.rate, 'value': val.num});
+	                        });
+	                        $('.wrap1 h3').text(data.msg);
+	                        Charts('main', legendData, seriesData);
+	                    }
+	                });
+	            </script>
+	        </div>
+            <div class="wrap2">
+                <h3></h3>
+                <div id="main1" style="width:465px;height:300px; "></div>
+            	<script type="text/javascript">
+                    $.ajax({
+                        url: 'http://www.nbinbi.com/waterObj/index.php/Admin/StatisticalReport/returnCountRateSingleUser',
+                        dataType: 'jsonp',
+                        success: function (data) {
+                            var legendData = [];
+                            var seriesData = [];
+                            $.each(data.data, function (index, val) {
+                                legendData.push(val.rate);
+                                seriesData.push({'name': val.rate, 'value': val.num});
+                            });
+                            $('.wrap2 h3').text(data.msg)
+                            Charts('main1', legendData, seriesData);
+                        }
+                    });
+            </script>
+            </div>
+            <div class="wrap2 wrap3">
+                <h3></h3>
+                <div id="main2" style="width:465px;height:300px;"></div>
+            	<script type="text/javascript">
+                    $.ajax({
+                        url: 'http://www.nbinbi.com/waterObj/index.php/Admin/StatisticalReport/returnCountRateUser',
+                        dataType: 'jsonp',
+                        success: function (data) {
+                            var legendData = [];
+							var seriesData = [];
+							$.each(data.data, function (index, val) {
+								legendData.push(val.name);
+								seriesData.push({'name': val.name, 'value': val.num});
+							});
+							$('.wrap3 h3').text(data.msg);
+							Charts('main2', legendData, seriesData);
+                        }
+                    });
+            </script>
+            </div>
+            </div>
+			<!--最近数据-->
+            <div class="pieList">
+            	<ul>
+                	<li class="active"><a href="#">最近数据</a></li>
+                </ul>
+            </div>
+            <div class="statisticslist_table">
+            	<table id="table1">
+                	<thead>
+                    	<tr>
+                        	<td>日期</td>
+                        	<td>收入金额</td>
+                            <td>清洗车辆</td>
+                            <td>新增用户</td>
+                            <td>流失用户</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="countList">
+                <li class="active" id="userTj"><a href="javascript:void(0);">用户统计</a></li>
+                <li id="incomeTj"><a href="javascript:void(0);">收入统计</a></li>
+                <li id="parwaysTj"><a href="javascript:void(0);">支付方式统计</a></li>
+            </ul>
+            <div class="data selectdate">
+            	<input id="month" type="date" value="2016-05-04" class="startBtn" />
+            	<input id="month" type="date" value="2016-06-04" class="endBtn" />
+                <a class="day" href="javascript:" flog=1>今日</a>
+                <a class="day" href="javascript:" flog=2>昨日</a>
+                <a class="day" href="javascript:" flog=8>七天</a>
+                <a class="day" href="javascript:" flog=11>十天</a>
+            </div>
+            <div class="tableChoose statisticslist_table">
+            	<table id="table2" class="">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+	
+    <script>
+	 $.ajax({
+            url:'http://www.nbinbi.com/waterObj/index.php/Admin/StatisticalReport/returnInCome',
+			method:'get',
+            dataType:'jsonp',
+            success:function(data){
+					//console.log(data.data)
+				var strT='';
+				var strY='';
+				var str7='';
+				var str10='';
+				var str15='';
+				var str30='';
+				strT+="<tr>"+
+						"<td>"+'今日'+"</td>"+
+						"<td>"+data.data.income.today+"</td>"+
+						"<td>"+data.data.wcar.today+"</td>"+
+						"<td>"+data.data.wsxuser.today+"</td>"+
+						"<td>"+data.data.wuser.today+"</td>"+
+					"</tr>";
+				strY+="<tr>"+
+						"<td>"+'昨日'+"</td>"+
+						"<td>"+data.data.income.yesterday+"</td>"+
+						"<td>"+data.data.wcar.yesterday+"</td>"+
+						"<td>"+data.data.wsxuser.yesterday+"</td>"+
+						"<td>"+data.data.wuser.yesterday+"</td>"+
+					"</tr>";
+				str7+="<tr>"+
+						"<td>"+'七天'+"</td>"+
+						"<td>"+data.data.income.sevenday+"</td>"+
+						"<td>"+data.data.wcar.sevenday+"</td>"+
+						"<td>"+data.data.wsxuser.sevenday+"</td>"+
+						"<td>"+data.data.wuser.sevenday+"</td>"+
+					"</tr>";
+				str10+="<tr>"+
+						"<td>"+'十天'+"</td>"+
+						"<td>"+data.data.income.tenday+"</td>"+
+						"<td>"+data.data.wcar.tenday+"</td>"+
+						"<td>"+data.data.wsxuser.tenday+"</td>"+
+						"<td>"+data.data.wuser.tenday+"</td>"+
+					"</tr>";
+				str15+="<tr>"+
+						"<td>"+'十五天'+"</td>"+
+						"<td>"+data.data.income.fifteenday+"</td>"+
+						"<td>"+data.data.wcar.fifteenday+"</td>"+
+						"<td>"+data.data.wsxuser.fifteenday+"</td>"+
+						"<td>"+data.data.wuser.fifteenday+"</td>"+
+					"</tr>";
+				str30+="<tr>"+
+						"<td>"+'三十天'+"</td>"+
+						"<td>"+data.data.income.thirtyday+"</td>"+
+						"<td>"+data.data.wcar.thirtyday+"</td>"+
+						"<td>"+data.data.wsxuser.thirtyday+"</td>"+
+						"<td>"+data.data.wuser.thirtyday+"</td>"+
+					"</tr>";
+				$('#table1').find('tbody').html(strT+strY+str7+str10+str15+str30);
+            }
+        });
+		
+		
+    </script>
+	</body>
+</html>

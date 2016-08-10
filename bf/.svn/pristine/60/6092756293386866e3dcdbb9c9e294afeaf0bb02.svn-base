@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/changeyuyuetime.js"></script>		
+	</head>
+	<body>
+		<div class="admin_addcontent_box">
+			<div class="oldchosetime">
+				<label style="float: left;">选择次数：</label>
+				<p class="chinnum" style="margin-left:0.9%;text-align: center;height:24px;width:26%;text-overflow:ellipsis;color: #504E4E;cursor: pointer;border: 1px solid #A9A9A9;float: left;" ></p>
+				<p class="choutnum" style="text-align: center;height:24px;width:26%;text-overflow:ellipsis;color: #504E4E;margin-left: 4.2%;cursor: pointer;border: 1px solid #A9A9A9;float: left;"></p>
+			</div>
+			<div class="admin_changecontent"> 
+				<label>修改时间：</label>
+				<input class="admin_addcontent_times onecetime_chosebtbg" type="text" value="内饰清洗时间" style="text-align: center;height:24px;text-overflow:ellipsis;color: #504E4E;cursor: pointer;background-image: url(img/data.png);background-size: 24px;background-repeat: no-repeat;border: 1px solid #A9A9A9;" readonly="readonly">
+				<input class="admin_addcontent_times onecetime_chosebten" type="text" value="外饰清洗时间" style="text-align: center;height:24px;text-overflow:ellipsis;color: #504E4E;margin-left: 3.7%;cursor: pointer;background-image: url(img/data.png);background-size: 24px;background-repeat: no-repeat;border: 1px solid #A9A9A9;" readonly="readonly">
+				<div class="tianjialist">
+					<div class="chtimechoserr" style="display: block;">
+						<div id="box" style="overflow: hidden;float: left;" ></div>				
+					</div>
+					<div class="chtimechosery" style="display: block;">
+						<div id="box2" style="overflow: hidden;float: left;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="admin_addcontent_foot">
+				<button class="admin_list changeyuyuetime">保存</button>     
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/calendar.js" ></script>
+</html>

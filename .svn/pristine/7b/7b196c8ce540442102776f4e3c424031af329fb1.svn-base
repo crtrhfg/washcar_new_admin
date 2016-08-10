@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script type="text/javascript" src="js/taocanadd.js" ></script>
+        <script type="text/javascript" src="js/3.js"></script>
+	</head>
+	<body>		
+    	<div class="menuTitle">
+            <div class="choose">
+                <select class="city_numO" onchange="sheng(this.value)">
+                    <option value="s1">请选择省份</option>
+                </select>
+                <select class="city_numT" onchange="cheng(this.value)">
+                    <option value="s2">请选择城市</option>
+                </select>
+                <select class="city_numF" onchange="aheng(this.value)">
+                    <option value="s3">请选择城市</option>
+                </select>							
+                <select class="city_numS">
+                    <option value="s4">请选择楼盘</option>
+                </select>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="关键字" class="search_input"/>
+                <input type="button" value="查询"  class="chaxun" />
+            </div>         
+        </div>
+	    <div class="admin_listcontent">
+            <ul class="list">
+                <li class="taocanlist_month activeList">包月</li>  
+                <li class="Deletion_month">单次</li>
+            </ul>
+	    	<table class="moneyadmin_button">
+	        	<thead>
+	            	<tr>
+	                	<td>订单ID</td>
+	                	<td>车主姓名</td>
+	                	<td>联系方式</td>
+	                	<td>车位号</td>
+	                	<td>车牌号</td>
+	                	<td>服务类型</td>
+	                	<td>楼盘</td>
+	                	<td>时间</td>
+	                	<td>金额</td>
+	                	<td>支付状态</td>
+	                	<td>操作</td>
+	                </tr>
+	            </thead>                        
+	            <tbody>
+	           </tbody>
+	        </table>
+	  
+	    <div class="tcdPageCode"></div>
+	    <script>
+		$(function (){
+			cityO();
+			//默认定义为包月
+			window.nowJson={
+				url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateMonthCashUserList",
+				type:"包月",
+				idtype:"omid"
+			};
+			//默认请求包月现金用户的数据
+			requestCashUserData({
+				url:window.nowJson.url,
+				type:window.nowJson.type
+			},function (count){
+				$(".tcdPageCode").createPage({
+					  pageCount:count,
+					  current:1
+				});
+			});
+			bindEventToPageBtn();
+			//填充现金用户的数据
+			function fullCashUserData(data,type){
+				var contentString="";
+				$(data).each(function(index, val) {
+                        			contentString+="<tr>"+
+						"<td>"+val[window.nowJson.idtype]+"</td>"+
+						"<td>"+val.username+"</td>"+
+						"<td>"+val.phonenum+"</td>"+
+						"<td>"+val.park+"</td>"+
+						"<td>"+val.carnum+"</td>"+
+						"<td>"+type+"</td>"+
+						"<td>"+val.building+"</td>"+
+						"<td>"+val.rudate+"</td>"+
+						"<td>"+val.totalprice+"</td>"+
+						"<td>待付款</td>"+
+						"<td><button class='btn' data-id="+val[window.nowJson.idtype]+" data-type='"+window.nowJson.idtype+"'>确认收款</button></td>"+
+					"</tr>";	
+                    			});
+				$('.moneyadmin_button').find('tbody').html(contentString);
+			}
+			//请求现金用户的数据
+			function requestCashUserData(arg,fn){
+				!arg.page&&(arg.page=1);
+				$.ajax({
+					url:arg.url,
+					dataType:"jsonp",
+					data:{"page":arg.page},
+					success:function (data){
+						dataLength=Math.ceil(data.len/14);
+						fullCashUserData(data.data,arg.type);
+						fn&&fn(dataLength);
+						bindEventToPageBtn();
+					}
+				});
+			}
+			//给分页组件绑定点击事件
+			function bindEventToPageBtn(){
+				$(".tcdPageCode").bind("click",function (){
+					var nowPage=$(".current").html();
+					requestCashUserData({
+						page:nowPage,
+						url:window.nowJson.url,
+						type:window.nowJson.type
+					});
+				});
+			}
+			//单次包月切换ajax请求数据
+			$(".list").bind("click",function (e){
+				var ev=e || window.event;
+				var src=ev.target || ev.srcElement;
+				if(src.nodeName=="LI"){
+					$(src).parent().find("li").removeClass('activeList');
+					src.className+=" activeList";
+					if(src.className.indexOf("Deletion_month")>-1){
+						window.nowJson={
+							url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateSingleCashUserList",
+							type:"单次",
+							idtype:"osid"
+						};
+						requestCashUserData({
+							page:1,
+							url:window.nowJson.url,
+							type:window.nowJson.type
+						},function (count){
+							$(".tcdPageCode").createPage({
+								  pageCount:count,
+								  current:1
+							});
+						});
+					}else if(src.className.indexOf("taocanlist_month")>-1){
+						window.nowJson={
+							url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateMonthCashUserList",
+							type:"包月",
+							idtype:"omid"
+						};
+						requestCashUserData({
+							page:1,
+							url:window.nowJson.url,
+							type:window.nowJson.type
+						},function (count){
+							$(".tcdPageCode").createPage({
+								  pageCount:count,
+								  current:1
+							});
+						});
+					}
+				}
+				$('.city_numO option[value="s1"]').attr("selected",true)
+				$('.city_numT option[value="s2"]').attr("selected",true)
+				$('.city_numF option[value="s3"]').attr("selected",true)
+				$('.city_numS option[value="s4"]').attr("selected",true)
+
+			});
+			//关键字搜索ajax操作
+			function searchKeyword(pagenum){
+				var val=$(".search_input").val();
+				if(val.length<1)return alert("请输入关键字!");
+				if(window.nowJson.idtype=="omid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateMonthCashUserListBykeyword";
+				}else if(window.nowJson.idtype=="osid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateSingCashUserListBykeyword";
+				}
+				$.ajax({
+					url:window.nowJson.url,
+					dataType:"jsonp",
+					data:{keyword:val,page:pagenum},
+					success:function (data){
+						dataLength=Math.ceil(data.len/14);
+						fullCashUserData(data.data,window.nowJson.type);
+						$(".tcdPageCode").createPage({
+							  pageCount:dataLength,
+							  current:1
+						});
+						bindEventToPageBtn();
+					}
+				});
+			}
+			$(".chaxun").bind("click",function (){
+				searchKeyword(1);
+			});
+			$(".search_input").bind("keydown",function (e){
+				var ev=e || window.event;
+				if(ev.keyCode==13){
+					$(".chaxun")[0].click();
+				}
+			});
+			//确认收款ajax操作
+			function ConfirmReceip(type,id){
+				var json={};
+				if(type=="omid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/confirmPaymentByRateMonth";
+					json["omid"]=id;
+				}else if(type=="osid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/confirmPaymentByRateSingle";
+					json["osid"]=id;
+				}
+				if(confirm("确认收款")){
+					$.ajax({
+						url:window.nowJson.url,
+						dataType:"jsonp",
+						data:json,
+						success:function (data){
+							alert(data.msg);
+							data.status==1&&window.location.reload(true);
+						}
+					});
+				}
+			}
+			$(".moneyadmin_button").bind("click",function (e){
+				var ev=e || window.event;
+				var src=ev.srcElement || ev.target;
+				if(src.nodeName=="BUTTON" && src.className=="btn"){
+					ConfirmReceip(src.getAttribute("data-type"),src.getAttribute("data-id"));
+				}
+			});
+			//三级联动ajax请求数据
+			function threeLevelAjax(id,pagenum){
+				var province=$(".city_numO").val();
+				var city=$(".city_numT").val();
+				var county=$(".city_numF").val();
+				var building=$(".city_numS").val();
+				if(window.nowJson.idtype=="omid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateMonthCashUserListByArea";
+				}else if(window.nowJson.idtype=="osid"){
+					window.nowJson.url="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateSingleCashUserListByArea";
+				}
+				$.ajax({
+					url:window.nowJson.url,
+					dataType:"jsonp",
+					data:{vid:id,page:pagenum},
+					success:function (data){
+						
+						dataLength=Math.ceil(data.len/14);
+						fullCashUserData(data.data,window.nowJson.type);
+						$(".tcdPageCode").createPage({
+							  pageCount:dataLength,
+							  current:1
+						});
+						bindEventToPageBtn();
+					}
+				});
+			}
+			$(".city_numS").bind("change",function (){
+				hheng(function (id){
+					threeLevelAjax(id,0);
+				});
+			});
+		});
+        </script>
+          </div>
+	</body>
+</html>

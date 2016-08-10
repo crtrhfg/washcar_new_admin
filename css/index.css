@@ -1,0 +1,594 @@
+*{margin: 0;padding: 0;font-size: 15px;font-family: "微软雅黑";list-style-type: none;text-decoration: none;outline: 0;font-style: normal;}
+button{cursor: pointer;}
+.clear{display: block;clear: both;}
+/*头部样式*/
+.header_left{margin:0.1% 0;float: left;cursor: pointer;}
+.header_left img{margin-top: 5%;border: 0;}
+.header_rigt{width: 23%;float: right;text-align: center;}
+.header_rigt>ul>li>a{text-decoration: none;color: #7D7D7D;}
+.header_rigt_img{float: left;margin-top: 10px;}
+.header_rigt_img>a>img{border-radius: 25px;}
+.header_rigt_admin{float: left;margin-left: 6%;line-height: 69px;height: 69px;}
+.header_rigt_password{	float: left;margin-left: 3%;padding: 0 5px;line-height: 69px;height: 69px;color: #7D7D7D;}
+.header_rigt_password:hover{background-color: #666666;color: white;}
+.header_rigt_out:hover{background-color: #666666;color: white;}
+.header_rigt_out{float: left;margin-left: 4%;width: 18%;cursor: pointer;line-height: 69px;height: 69px;color: #7D7D7D;}
+/*左边样式*/
+.content{width: 100%;height: 908px;}
+.content_left{width: 14%;height: 100%;float: left;background-image:url(../img/leftground.png);background-size: cover;background-repeat: no-repeat;}
+.content_left_list{background-color: #E3E3E3;font-weight: bold;height: 35px;border: 1px solid #DEDEDE;}
+.content_left_listimgdown{background-image:url(../img/down.png);width: 11%;height: 100%;margin: -25px 72%;background-repeat: no-repeat;}
+.content_left_listimgup{background-image:url(../img/up.png);width: 11%;height: 100%;margin: -25px 72%;background-repeat: no-repeat;}
+.huadongchange{width: 100%;height: 300px;background-color: white;}
+.content_left_listbox{width:100%;height:89%;color: #686868;cursor: pointer;line-height: 35px;text-align: center;}
+.left_chosestyle{padding: 10px;color: #747474;cursor: pointer;position: relative;text-align: center;}
+.bannerfoot{background:#85C45C;text-align:center;color: white;font-size: 16px;width: 14%;height:19%;position: fixed;top:81%;}
+.bannerfoot>p{line-height: 12;}
+/*左边隐藏栏样式*/
+.content_left_listhideo,.content_left_listhidet,.content_left_listhidef,.content_left_listhides,.content_left_listhidee{display: none;}
+.gengxin{position: absolute;font-size: 15px;width: 25px;height: 25px;line-height: 25px;text-align: center;background-color: #F84682;color: white;display: block;border-radius: 100%;top: 7px;right: 13px;}
+/*table表格样式*/
+.table_th{background: #6E7074;color: white;}
+/*右边部分头部*/
+.content_right{width: 86%;height: 100%;float: left;background-color: #F2F2F3;} /**/
+.content_right_top{width: 7%;height: 5%;background-color: #90C96B;}
+.content_right_topimg{background-image:url(../img/smallfork.png);width: 14%;height: 41%;margin: -21% 87%;background-repeat: no-repeat;}
+.content_right_topcont>a{color: white;}
+.content_right_topcont{width: 83%;height: 100%;text-align: center;margin-top: 8%;margin-left: 11%;}
+/*登录*/
+.logincenter{width:472px;min-height: 520px;margin:9% auto;}
+.loginimg{width: 80%;margin: auto; text-align: center;}
+.logininput{width: 80%;height: 300px;margin: auto;}
+.logininput>span{color: white;text-align: center;margin-bottom: 11%;font-size: 31px;margin-top: 6%;font-family: "微软雅黑";margin-left: 4%;}
+.logininput_input{margin:8% auto;background-color: white;height: 56px;margin-bottom: 5%;border-radius: 4px;}
+.logininput_input>div{width: 10%;float: left;line-height: 69px;margin-left: 2%;}
+.logininput_input>input{width: 84%;height: 50px;margin: 1%;border: 0;outline-style: none;font-size:16px;}
+.loggintishi{color: #B9BDC3;font-size: 16px;}
+.logincenter>input{width: 80%;font-size:20px;height: 50px;margin: auto;background-color: #85C45C;color: white;border: 0;outline-style: none;cursor: pointer;margin-left: 10%;border-radius: 4px;}
+/*index右边部分 大框架*/
+.content_right_tuxingtongji{width: 90%;height: 100%;padding: 1% 5%;}
+.content_right_tuxingtongji>div>div{width: 25%;height: 220px;float: left;margin-right: 4%;margin-bottom: 4%;background-color: white;padding: 1% 2% 0 2%;position: relative;}
+.content_right_tuxingtongji>div>div>h1{font-size: 19px;font-weight: 100;}
+.content_right_tuxingtongji>div>div>div>p{text-align: center;}
+.content_right_tuxingtongji>div>div>.index_imgcenter{width: 40%;height: 62%;margin: auto;}
+.index_p{margin-bottom: 17px;}
+.adminmessage_tuxingtongji>img{float: left;}
+.adminmessage_tuxingtongji>h1,.adminmessage_tuxingtongji>h3{text-align: center;font-size: 25px;font-weight: 100;margin-top: 7%;}
+.content_right_tuxingtongji>div>div>p{text-align: center;margin-top: 10px;}
+.content_right_tuxingtongji>div>div>a{position: absolute;left: 0;bottom: 0;width: 100%;}
+.content_right_tuxingtongji>div>div>a>button{width: 100%;height:39px;margin-top: 2%;border: 1px solid #F6F6F6;background-color: #F6F6F6;font-size: 19px;color: #737373;cursor: pointer;}
+/*admin_list右边部分*/
+.admin_listcontent>table{width: 100%;border-collapse: collapse;}
+.admin_listcontent>ul{margin-bottom: 4%;}
+.daoqitixing_table td{height: 35px;}
+.admin_listcontent_message{width: 94%;height:636px;background-color: white;margin: 0.5% 1%;padding: 1% 2% 4% 2%;border: 1px solid #d2d2d2;}
+.admin_listcontent_message>table{width: 98%;border-collapse: collapse;}
+.admin_listcontent_message>ul{margin-bottom: 2%;}
+td{border: 1px solid #DEDEDE;text-align: center;height: 35px;padding: 0 5px;}
+.admin_listcontent_xinxi{margin-top: 0.5%;}
+.admin_listcontent_xinxita{width: 98%;height: 84%;}
+.admin_listcontent_xinxita>table{width: 100%;height: 100%;border-collapse: collapse;}
+.admin_listcontent_xinxitabiaoti>td{width: 100%;}
+.admin_listcontent_tongji>td{text-align: left;}
+.admin_listcontent_mean{height: 7%;background: #F2F2F3;}
+.admin_list_list tr:not(:first-child):hover,.tryadminmess tr:not(:first-child):hover,
+.missadmin_content tr:not(:first-child):hover,.daoqitixing_table tr:not(:first-child):hover,
+.huifang_table tr:not(:first-child):hover,.admin_service tr:not(:first-child):hover,
+.MenuTable tbody tr:hover,.oneMenuTab tbody tr:hover,
+#table1 tbody tr:hover,#table2 tr:not(:first-child):hover,
+.administratorlist_table tr:not(:first-child):hover,
+.add_role_list_table ul li:not(:first-child):hover,
+.carpep_xinxi_bodytab tbody tr:not(:first-child):hover{background-color: #EAEAF5;}
+.xiangqing_color a{color: #7D7D7D;}
+.xiangqing_color a:hover{color: black;}
+.dancitaocan_button{width: 60%;height: 6%;margin-bottom: 1%}
+.dancitaocan_button>button{width: 80px;height: 35px;color: #7D7D7D;background-color: white;border: 1px solid #E5E5E5;cursor: pointer;}
+.admin_listcontentmesa{width: 94%;background-color: white;margin: 0% 1%;padding: 2%;border: 1px solid #d2d2d2;height: 761px;}
+.admin_listcontentmesa>table{width: 98%;border-collapse: collapse;}
+/*admin_content右边部分*/
+.admin_addcontent{width: 800px;height: 35px;margin-bottom: 1%;clear: both;}
+.admin_addcontent>label{width: 20%;font-size: 16px;}
+.admin_addcontent_input{width: 56%;height: 74%;}
+.admin_addcontent_carmes{width: 223px;height: 74%;text-align: center;}
+.admin_addcontent_carnum{width: 17.7%;height: 74%;text-align: center;}
+.admin_addcontent_times{width: 28%;text-align: center;box-shadow:none !important;background-position: 2px;}
+.admin_addcontent_carmeser{margin-left: 0.9%;margin-right: 0.8%;}
+.admin_addcontent_tjbutton{width: 100px;height: 25px;border: 1px solid #9FD77A;color: #9FD77A;background-color: white;cursor: pointer;}
+.admin_addcontent_tjzsbutton{width: 100px;height: 25px;border: 1px solid #9FD77A;color: #9FD77A;background-color: white;cursor: pointer;}
+#searchCar{border: 1px solid #9FD77A;color: #9FD77A;background-color: white;cursor: pointer;width: 8%;height: 76%}
+#searchCar:hover,.admin_addcontent_tjbutton:hover,.admin_addcontent_tjzsbutton:hover{background-color: #85C45C;color:white;}
+.admin_addcontent>select{width:110px;height: 79%;margin-right: 1%;color: #504E4E;}
+select>option{color: black;}
+.admin_addcontent_foot{width: 15%;height: 5%;margin: 0% 5%;}
+.admin_addcontent_foot>button{width: 70%;height: 100%;border: 1px solid #85C45C;background-color: #85C45C;color: white;cursor: pointer;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border-radius: 4px;}
+.admin_addcontent_foot>button:hover{background: #5BBB1D;}
+.admin_addcontent_money{width: 60%;height: 35px;margin-bottom: 1%;clear: both;}
+.admin_addcontent_once input,.admin_addcontent_once select{margin-right: 0.5%;margin-left: 0.8%;}
+.admin_addcontent_zs input,.admin_addcontent_zs select{margin-right: 0.5%;margin-left: 0.8%;}
+.totlemoney{margin-left: 8%;}
+/*头部选项样式*/
+.mainHeader{ height:35px;width:26%;}
+.active{height:35px;background:#90c96b;color:#fff;text-align:center;line-height: 35px;float: left;}
+.actived{width:33.3%;height:35px;background:#90c96b;color:#fff;text-align:center;line-height: 35px;float: left;}
+.while{width:33.3%;height:35px;background:#85C45C;color:white;text-align:center;line-height: 35px;float: left;}
+.gray{width:33.3%;height:35px;background-color:#BFBFBF;color: white;text-align:center;line-height: 35px;float: left;}
+.gray>span>a{font-size: 24px;}
+.gray>span{color:white;position: absolute;left: 27.5%;top: -1%;cursor: pointer;}
+.while>span>a{font-size: 24px;color: white;}
+.while>span{color:#858585;position: absolute;left: 35.1%;top: -1%;cursor: pointer;}
+.menuTitle ul{ float:left; width:55%;margin-left: 1.5%;height: 100%;}
+.menuTitle li{width:24%;height:100%;float: left;}
+.menuTitle li>select{ color: #DEDEDE;width:84%; height:70%; border:1px solid #d3d3d3; text-align:center; line-height:38px; margin:5% 0 0 1%; cursor:pointer;}
+.menuTitle .else{ background-position:135px 16px}
+.search{ float:left;margin:0.6% 1%;}
+.search input+input{ width:99px; height:38px; background:#85c45c; color:#fff; text-align:center; border:none; text-indent:0; margin-left:-4px;}
+.rightbutton_adddeleteli{height: 100%;float: left;margin-right: 3%}
+.rightbutton_adddeleteli input{width: 100%;height: 61%;padding: 0 5px;margin-top: 15%;background-color: white;border: 1px solid #d3d3d3;color: #9A9A9A;cursor: pointer;}
+.list li{display:block; width:204px;font-weight: normal; height:40px; border:1px solid #79bf4c; line-height:40px; text-align:center; margin:1% 0 0 0; border-radius:4px; color:#85c45c;cursor: pointer;}
+.list li:hover{background-color: #85C45C;color: white;}
+.tclist li{float:left;display:block; width:90px;font-weight: normal; height:35px; border:1px solid #79bf4c; line-height:35px; text-align:center; margin:0 0 1% 2%; border-radius:4px; color:#85c45c;cursor: pointer;}
+.tclist li:hover{background-color: #85C45C;color: white;}
+
+/*预约修改*/
+.changadmin_input{margin-bottom: 1%;width: 60%;float: left;}
+.changadmin_input input{min-width:250px;height: 24px;}
+.changeyubuttonbc{width: 50%;float: left;}
+.changeyubuttonbc button{width: 17%;}
+/*分页*/
+.tcdPageCode{color: #ccc;text-align: center;width: 500px;float: left;margin-left: 35%;margin-top: 1%}
+.tcdPageCode a{display: inline-block;color: #85C45C;display: inline-block;height: 25px;line-height:25px;padding: 0 10px;border: 1px solid #ddd;margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #85C45C;background-color: #85C45C;color: white;}
+.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: white;background-color: #85C45C;	border: 1px solid #85C45C;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+.guanjianzi_chaxun:hover{border: 1px solid #85C45C;}
+.guanjianzi_chaxun_but:hover{background-color: #9A9A9A;}
+.huifangjilu_text:hover{border: 1px solid #85C45C;}
+.huifangjilu_chaxun:hover{background-color: #9A9A9A;}
+
+/*新增用户*/
+.timechoser{width: 48.5%;height: 30%;display: none;margin-bottom: 1%;}
+.timechoser div{width: 270px;height: 148px;border: 1px solid #A9A9A9;}
+.timechoserr{width: 48.5%;height: 30%;display: none;margin-bottom: 1%;}
+.timechoserr div{width: 270px;height: 148px;border: 1px solid #A9A9A9;}
+.timechosery{width: 48.5%;height: 30%;display: none;margin-bottom: 1%;}
+.timechosery div{width: 270px;height: 148px;border: 1px solid #A9A9A9;}
+
+.chtimechoserr{max-width: 270px;height: 30%;margin-left:9.2%;display: none;margin-bottom: 1%;float: left;}
+.chtimechoserr div{width: 97%;height: 148px;border: 1px solid #A9A9A9;}
+.chtimechosery{max-width: 270px;height: 30%;margin-left:1.7%;display: none;margin-bottom: 1%;float: left;}
+.chtimechosery div{width: 96.5%;height: 148px;border: 1px solid #A9A9A9;}
+
+.timechoseryed{width: 48.5%;height: 148px;margin-bottom: 1%;}
+.timechoseryed div{width: 36%;height: 148px;}
+.timechoseryek{width: 48.5%;height: 148px;margin-bottom: 1%;}
+.timechoseryek div{width: 36%;height: 148px;}
+.hovered{background-color: #85C45C;color: white;}
+.onecetime_chosebtbg,.onecetime_chosebten{overflow: hidden;}
+.min_button{display: none;}
+.admin_changecontent{width: 60%;margin-bottom: 1%;}
+.admin_changecontent>label{width: 20%;font-size: 16px;}
+.oldchosetime{width: 60%;margin-bottom: 2%;height: 26px;}
+
+.min_button{margin-left: 1.3%;}
+.min_button,.add_button{width: 18%;}
+.hidetrieout label,.tccss label{width: 11%;float: left;}
+.hidetrieout input,.tccss select,.tccss input,.tccss span,.tccss div{float: left;}
+.aaasadw{width: 13%;float: left;margin-left: 1%;}
+.aaasadw input{height: 30px;}
+/*tryadmin样式*/
+.admin_listcontent_tryadmin{width: 94%;height:630px;background-color: white;margin: 1.5% 1%;padding: 2% 2% 0 2%;border: 1px solid #d2d2d2;}
+.admin_listcontent_tryadmin>table{width: 98%;border-collapse: collapse;}
+.admin_listcontent_tryadmin>ul{margin-bottom: 2%;}
+.huifangdinggou_button{margin: 2% auto;height: 69%;}
+.huifangdinggou_button button{border: 1px solid #E5E5E5;background-color: white;width: 38%;color: #7D7D7D;height: 99%;margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.huifangdinggou_button button:hover{border: 1px solid #85C45C;color: #85C45C;}
+.huifangdinggou_button_left{float: left;}
+/*.huifangdinggou_button_right{float: right;}*/
+/*失效用户*/
+.missadmin_table{width: 95%;background-color: white;margin:1% 1%;padding: 1% 1.5%;border: 1px solid #d2d2d2;height: 662px;}
+.missadmin_table>table{width: 100%;border-collapse: collapse;}
+.missadmin_botton{margin: 0% auto;}
+.missadmin_botton button{border: 1px solid #E5E5E5;background-color: white;width: 80px;color: #7D7D7D;height: 28px; margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.missadmin_message_adminmes li{float: left;width: 100%;}
+.missadmin_message_adminmes>span{line-height: 35px;}
+/*回访续费详情按钮*/
+.missadmin_botton button:hover{border: 1px solid #85C45C;background-color: white;color: #85C45C;}
+.huifangmessage a{color: #7D7D7D;}
+.huifangmessage a:hover{color: black;}
+/*到期提醒*/
+.menuTitle>a>input{margin: 0.7%;height: 62%;width: 9%;color: white;background-color: #85C45C;border: 1px solid #85C45C;cursor: pointer;}
+.menuTitle>input{margin: 0.7%;height: 62%;width: 9%;color: white;background-color: #85C45C;border: 1px solid #85C45C;cursor: pointer;}
+.admin_listcontent_huifang{width: 94%;background-color: white;margin: 1.5% 1%;padding: 2%;border: 1px solid #d2d2d2;height: 720px;}
+.huifangjilu_message_content{width: 94%;height: 86%;background-color: white;margin: 0% 1%;padding: 2%;border: 1px solid #d2d2d2;min-height: 718px;}
+.carpep_xinxi_top>span{margin-right: 3%;font-size: 17px;}
+.carpep_xinxi_body{height: 61%;}
+.carpep_xinxi_body>table{width: 30%;}
+.carpep_xinxi_body>table>tbody>tr>td{text-align: left;border: 0;padding: 4% 0 0 0;}
+.carpep_xinxi_foot{margin-top: 1%;}
+.carpep_xinxi_foot input{background-color:white;width: 7%;height: 35px;border: 1px solid #85C45C;color: #85C45C;cursor: pointer;}
+/*到期提醒再次回访*/
+.carpep_xinxi_bodyta{width: 100%;height: 145px;margin-top: 1%;overflow-y: scroll;}
+.carpep_xinxi_bodyta>table{width: 86%;border-collapse: collapse;}
+.carpep_xinxi_bodytab{width: 100%;height: 18%;margin-top: 1%;}
+.carpep_xinxi_bodytab>table{width: 100%;height: 100%;border-collapse: collapse;}
+.carpep_xinxi_bodytab .huifangjilu_messagetb{background-color: #382828;color: white;}
+/*按钮 详情等js切换颜色*/
+.tyradminbt_bordercolor{border: 1px solid #91C96C;}
+.colorer{color:#85C45C;cursor: pointer;}
+.missadmin_qiehuan{background-color: #85C45C !important;color: white !important;}
+.hover{color: white;background-color: #85C45C;}
+
+
+/*黄涛css*/
+.taocanlist_table{width: 99%;height: 100%;background-color: white;}
+.taocanlist_table>table{width: 97%;border-collapse: collapse;margin-left: 2.2%;}
+.mainMenu{ border:1px solid #d3d3d3; width:98%;height: 727px; margin-left:1%; background:#fff;padding: 2% 0;}
+.list>a>li{ float:left;border:1px solid #d2d2d2; line-height:46px; text-align:center; margin-right:2%;width: 7%;cursor: pointer;color: black;}
+.MenuTable{margin: 1% 0 0 2%;border-collapse: collapse;}
+.s1{ width:20px; height:20px;float: left;margin-left: 5%;}
+.s2{ width:20px; height:20px; position:relative;left:13px;float: left;}
+.mainMenualert{width: 328px;height: 206px;;border: 1px solid #eeeeee;position: absolute;left: 40%;background-color: white;top:35%;display: none;}
+.mainMenualert p{font-size: 18px;text-align: center;margin-top: 18%;}
+.mainMenualert button{width:25%;height: 13%;border: 0;outline: 0;margin-top: 20%;}
+.sure{background-color: #85C45C;color: white;margin-left: 24%;}
+.list li { display:block; width:204px;font-weight: normal; height:40px; border:1px solid #79bf4c; line-height:40px; text-align:center; margin:1% 0 0 0; border-radius:4px; color:#85c45c;cursor: pointer;}
+.list li:hover{background-color: #85C45C;color: white;}
+.mainMenu .list li,.oneMenu .list li{ margin-left:2%;margin-bottom: 1%;}
+.listter li:hover{border:1px solid #85C45C;color:#85C45C;}
+#yes em{ float:left; margin-left:0.5%;}
+#yes span{text-align: left;margin-left: 3.3%;}
+#yes input{ width:27%; float:left;border:0;}
+/*4.2业务定制-增加套餐*/
+.tcqxbut{width: 18%;color: white;margin-left: 10%;}
+.tcqdbut{width: 18%;}
+.addcarCon{ margin:27px 0 0 17px; width:98%;}
+.addcarCon li{ height:42px; line-height:42px; margin-bottom:17px;}
+.addcarCon span{display:inline-block; width:82px; text-align:right; float:left;margin-left: 3%;}
+.addcarCon input{width:457px; height:36px; line-height:36px; border:1px solid #d2d2d2; text-align:center; outline:none; float:left; color:#666;}
+.addcarCon select{width: 7.09%;height: 35px;border: 1px solid #d3d3d3;color: #d3d3d3; color:#666;}
+.else input{ width:187px; height:32px; text-align:center; line-height:32px; }
+textarea{ width:457px; height:206px; border:1px solid #d3d3d3; color:#666;box-sizing: border-box;}
+.area span{ vertical-align:top; }
+.addone{float:left;}
+.addone a{ position:absolute; top:118px; left:565px;width: 50px;height: 50px;color: #85C45C;font-size: 38px;}
+.addService input{width:213px; height:40px; text-align:center; line-height:40px; margin-right:29px;}
+.addService{ margin-left:82px;}
+.addcarCon .active{ background:#9dd07d; }
+.taocanlist_button{width: 36%;height: 10%;margin: 2% 4%;}
+.addcarCon button{height: 35px;border: 0;width: 70px;}
+.graybackground{background-color:#C9C9C9;margin-left: 10%;}
+.addcarCon .cartype{width:457px; height:36px; line-height:36px; border:1px solid #d2d2d2; text-align:center; outline:none; float:left;margin-top: 6px}
+.loupan_select select{width: 112px;height: 32px;border:1px solid #d2d2d2;color: #504E4E;line-height: 32px}
+#radio{line-height: 30px;height: 40px;}
+#radio strong{float: left;font-weight: 100;}
+#radio>div{width: 6%;height: 35px;float: left;margin-left: 0.5%;}
+#radio>div>input{width: 30%;height: 50%;margin-top: 4%;border:0;}
+/*4.3业务定制-单次服务*/
+.oneMenu{ border:1px solid #d3d3d3; width:98%; margin-left:1%; background:#fff;padding: 2% 0;height: 733px;}
+.oneMenuTab{width: 97%;background-color: white;margin-top:1%;}
+.oneMenuTab>table{width: 97%;border-collapse: collapse;margin-left: 2.2%;}
+.menuMade button{width: 27%;height: 35px;margin-left: 4%;border: 0;color: white;cursor: pointer;}
+.menuMade .cartype,.menu input{width:460px; height:39px; border:1px solid #d3d3d3; text-align:center; color:#999; }   /*修改*/
+/*4.4业务定制-增加项目*/
+.menu ul{ padding:26px 0 60px 20px;}
+.menu li{ height:42px; line-height:42px; margin-bottom:15px;}
+.menu span{ float:left; display:inline-block; width:80px; text-align:right; vertical-align:top; }
+.menu input{ float:left; width:457px; height:39px; border:1px solid #d3d3d3; text-align:center; }
+ .active{ background:#9dd07d;}
+.menuMade{border:1px solid #d3d3d3; width:98%; margin:1%; background:#fff;padding: 1% 0;min-height: 750px;}
+/*5现金用户*/
+
+.menuLable{ float:left; width:65%; }
+.menuLable select{ float:left; color:#cccccc; width:138px; height:38px; border:1px solid #d3d3d3; line-height:38px; margin:0.9% 0 0 2%;  cursor:pointer;}
+.menuLable .else{ width:178px;}
+.search input{ width:201px; height:36px; line-height:36px; border:1px solid #d3d3d3;  text-indent:10px;}
+.search input+input{ width:99px; height:38px; background:#85c45c; color:#fff; text-align:center; border:none; text-indent:0; margin-left:-5px;}
+.moneyadmin_button button{color: white;background-color: #85C45C;border: 0;width: 66%;height: 80%;}
+.activeList{color:#fff;cursor: pointer;}
+.menuTitle{ border:1px solid #d3d3d3; margin:1% 1%; width:98%; background:#fff; height:56px; }
+.menuTitle ul{ float:left; width:55%;margin-left: 1.5%;height: 100%;}
+.menuTitle li{width:22%;float: left;}
+.menuTitle li>select{ color: #504E4E;width:84%; height:70%; border:1px solid #d3d3d3; text-align:center; line-height:38px; margin:5% 0 0 1%; cursor:pointer;}
+.money_changebt li{float: left;width: 7%;height: 34px;border:1px solid #d3d3d3;margin-right: 2%;text-align: center;line-height: 34px;}
+.choose{width: 60%; height: 82%; float: left; margin-top: 8px; margin-left: 20px;}
+.choose select{width: 19%; height: 90%; margin-right: 0.4%; color: #504E4E; border:1px solid #d2d2d2}
+/*6.1统计报表-清单*/
+.tjbb_btzuijinshuju{background-color: #85C45C;width:4%;height: 35px;text-align: center;line-height: 35px;float: left;}
+.tjbb_btzuijinshuju a,.tjbb_btzuijinshujuu a{color: white;}
+.tjbb_btzuijinshujuu{background-color: #85C45C;width:17%;height: 35px;text-align: center;line-height: 35px;float: left;margin-bottom: 2%;margin-left: 2%;}
+.countList{width: 38%;float: left;}
+.selectdate{width: 62%;float: left;}
+.selectdate input{height: 35px;float: left;margin-right: 2%;}
+.day{ width:74px; height:40px; line-height:40px; text-align:center; display:inline-block; color:#333; border:1px solid #DEDEDE; margin-right:5px; float:left; background:#fff;}
+.day:hover{ background:#85C45C; color:#fff;}
+.exportLable{ width:81%; float:left; }
+.exportLable select{  float:left; color:#cccccc; width:11%; height:38px; border:1px solid #d3d3d3; line-height:38px; margin:0.9% 0 0 2%;  cursor:pointer;}
+.exportLable .else{ width:12%;}
+.exportSearch{ height:38px; width:16%; margin:0.7% 0 0 2%; float:left; }
+.exportSearch button{ display:inline-block; width:38%; height:36px; line-height:36px; text-align:center; border:1px solid #dcdcdc; float:left; cursor: pointer;}
+.statisticslist_buttonf{ width:39%; height:100%; background:#85c45c; border: 0; color:#fff; float:left; margin-right:10%;cursor: pointer;}
+.statisticslist_buttont{background-color: white;}
+.statisticslist_ul{ border:1px solid #d3d3d3; margin:1% 1%; width:98%; background:#fff; height:56px; }
+.statisticslist_ul ul{ float:left; width:60%;margin-left: 1.5%;height: 100%;}
+.statisticslist_ul li{width:16%;height:100%;float: left;}
+.statisticslist_ul li>select{ color: #DEDEDE;width:84%; height:70%; border:1px solid #d3d3d3; text-align:center; line-height:38px; margin:6% 0 0 1%;cursor:pointer;}
+.statisticslist_button{height: 100%;}
+
+
+
+.admin_listcontent_statistcslist{width: 94%;height:700px;background-color: white;margin: 0.5% 1%;padding: 2% 2% 0 2%;border: 1px solid #d2d2d2;}
+.admin_listcontent_statistcslist>table{width: 98%;border-collapse: collapse;}
+/*  修改内容 height margin  */
+.statisticslist_ul li>select{ color:#504E4E;width:84%; height:38px; border:1px solid #d3d3d3; text-align:center; line-height:38px;cursor:pointer;}
+.statisticslist_button{height: 100%;}
+
+.statisticslist_button>button{width: 9%;cursor: pointer;margin-top: 0.6%;margin-left: 1%;float: left;}
+.statisticslist_button_reach{background-color: #85C45C;color: white;}
+.statisticslist_button_list{background-color: white;border: 1px solid #d3d3d3;color: black; width:9%;line-height:33px; float: left; margin-top: 0.6%;margin-left: 2%; text-align: center;}
+.dateBtn{ float:left; width:10%; margin: 0.5% 0 0 -2.5%;}
+.dateBtn input{ width:97%; }
+/*6.2统计报表-数据统计*/
+.wrap1{ position:relative; background:#fff; width:29%; border:1px solid #dcdcdc; margin-left:16px; height:300px; float:left; margin-right:1%; }
+.wrap1 h3,.wrap2 h3{ position:absolute; bottom:10px; left:20px;}
+.wrap2{position:relative; background:#fff; width:29%; border:1px solid #dcdcdc; margin-left:16px; height:300px; float:left; margin-right:1%;}
+.pieList{ margin:17px 0 0 19px;}
+.pieList ul{}
+.pieList li,.pieList a{ height:36px; line-height:36px; text-align:center; float:left;margin: 1% 0;}
+.pieList li{border:1px solid #85c45c; padding:0 14px; margin-right:30px; background:#fff;}
+.pieList a{ display:block; color:#85c45c; }
+.pieList .active{ background:#85c45c;}
+.pieList .active a{ color:#fff;}
+.line{ border:1px solid #dcdcdc; width:98%;  margin:17px 0 2px 17px; position:relative;background-color: white;}
+#container{height:325px; }
+.lineTable table{ background:#fff;border-collapse: collapse;}
+.year{ position:absolute; top:0; left:0; z-index:2}
+.yearList li,.yearCon li{ float:left; cursor:pointer;}
+.yearList li{ width:80px; height:30px; line-height:30px; text-align:center; margin:10px 0 0 15px; background:#eeeeee; }
+.yearList .active{ border:1px solid #9F9;}
+.yearCon li{ margin-right:8px;}
+.yearCon{ width:176px; border:1px solid #0F9; margin-left:15px; display:none; padding:7px 0; background:#FFF;}
+.yearCon li:hover{ background:#CCC}
+.statisticslist_table{width: 91.5%;margin: 1% 1%;}
+.statisticslist_table>table{width: 100%;border-collapse: collapse;background-color: white;}
+.countList{ float:left;}
+.countList{ margin-left:19px;float: left;width: 30%;}
+.countList li{ border: 1px solid #85c45c; padding: 0 9px; margin-right: 10px; float:left; height:36px; line-height:36px; text-align:center; background:#fff;}
+.countList a{ color:#000; }
+.countList .active{ background:#85c45c;}
+.countList .active a{ color:#fff;}
+.data{ height:50px; margin: 0 10px 0 17px; float:left;}
+#month{ height: 41px; text-align: center; float:left; margin-right:10px; border:1px solid #DEDEDE;}
+.day{ width:10%; height:40px; line-height:40px; text-align:center; display:inline-block; color:#333; border:1px solid #DEDEDE; margin-right:5px; float:left; background:#fff;}
+.day:hover,.data .active{ background:#85C45C; color:#fff;}
+/*6.3统计报表-收入统计*/
+.pieWrap{ background:#fff; width:1457px; margin:13px 0 0 19px; border:1px solid #dcdcdc;}
+.headerElse{ height:45px;}
+.tableChoose{margin-bottom: 6%}
+
+/*7.1管理员列表*/
+.add a{ display:block; width:204px;font-weight: normal; height:40px; border:1px solid #79bf4c; line-height:40px; text-align:center; margin:0.45% 0 0 24px; border-radius:4px; color:#85c45c;}
+.add a:hover{background-color: #85C45C;color: white;font-size: 16px;}
+.table .else a{ background:none; color:#85c45c; padding:0 16px; width:auto; margin-right:2%;}
+.administratorlist_table{width: 94%;height: 650px;background-color: white;margin: 1% 1%;padding: 2%;border: 1px solid #d2d2d2;}
+.administratorlist_table>table{width: 97%;border-collapse: collapse;}
+.administratorlist_botton{margin: 2% auto;}
+.administratorlist_botton>button{width:24%;height:25px;border: 1px solid #E5E5E5;background-color: white;color: #7D7D7D;height: 99%;margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.administratorlist_botton>button:hover{border:1px solid #85C45C;color: #85C45C;}
+/*弹出层*/
+.alert{ width:233px; height:197px; border:1px solid #eeeeee; position:absolute;left:40%;top:26%; display:none;background-color: white;box-shadow: 0 0 15px #eee;border-radius: 2px}
+.alert h3{ height:29px; line-height:29px; color:#fff; background:#85c45c;padding-left:10px; margin-bottom:19px;}
+.alert p{ height:27px; line-height:27px; margin-left:40px;}
+.alert ul{ margin:52px 0 0 37px;}
+.alert li,.alert a{ width:132px;height:24px; text-align:center; line-height:24px; float:left; margin-left:24px;color: white;}
+.alert .cancel{background-color: #A0A0A0}
+.alert strong{ font-weight:normal;}
+.alert button{width: 30%;height: 13%;background-color: #85C45C;border: 0;color: white;margin: 18% 0 0 13%;border-radius: 4px}
+/*车辆管理*/
+.carAdmin button{width:30%;height:25px;border: 1px solid #E5E5E5;background-color: white;color: #7D7D7D;margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.carAdmin button:hover{border:1px solid #85C45C;color: #85C45C;}
+.carlist{margin:1% 1%;}
+/*正山*/
+/*修改密码弹框*/
+.adminlist_set_change{width: 30%}
+.change_password>div{margin-top: 35px;margin-left: 0;width: 330px;height: 117px}
+.change_password>div input{width: 214px;height: 34px;border: 1px solid #c4c4c4;;font-size: 18px}
+.confirm_password{margin-left:2%;margin-top: 14px;display: inline-block}
+.confirm_passwordnew{margin-left: 6.5%;}
+.change_password{box-shadow: 0 0 10px #eee;border-radius: 2px;width: 330px;height: 202px;border: 1px solid #EEEEEE;position: absolute;left: 35%;background-color: white;top:24%;}
+.change_password>button{width: 82px;height: 25px;border-radius: 4px;margin-top: 11px;border: none;}
+.change_password>div+button{background-color: #85c45c;margin-left: 64px;color: white;}
+.change_password>div+button+button{background-color: #A0A0A0;margin-left: 37px;color: white;}
+#pass_{margin-left: 75px}
+#password_{margin-left: 75px}
+.register_time{width: 18%}
+.freeze{width: 16%}
+.adminlist_set_del{width: 16%}
+/*删除管理员*/
+.del{width: 328px;height: 206px;border: 1px solid #eeeeee;position: absolute;left: 40%;
+    background-color: white;box-shadow: 0 0 10px #eee;border-radius: 2px;top: 300px;}
+.del p{text-align: center;margin: 34px 0 0}
+.del button{width: 89px;height: 25px;border-radius:4px;margin-top: 70px;border: none;}
+.confirm{background-color: #85c45c;margin-left: 58px;color: white;}
+.cancel_pass{background-color: #a0a0a0;margin-left: 37px;color: white;}
+/*增加管理员*/
+#select_manage{width: 326px;height: 37px;border: 1px solid #d2d2d2;}
+#select_manage option{height: auto;line-height: 37px}
+.addselect{display: none;width: 19.9%;height: 35px;position: absolute;margin-left:5%;}
+.administratorlist_add_input{border:1px solid #d3d3d3; width:96%; margin:1%; background:#fff;padding: 2% 1%;min-height: 676px;}
+.administratorlist_add_inputcon{width: 60%;height: 41px;margin-bottom: 1%;}
+.administratorlist_add_inputcon>label{width: 20%;font-size: 16px;}
+.administratorlist_add_inputcon>img{margin-left: -3%;}
+.administratorlist_add_inputp{width: 324px;height: 74%;border: 1px solid #d2d2d2}
+.administratorlist_add_inputpd{margin-left: 1%;width: 34%;height: 74%;}
+.administratorlist_add_button{width: 10%;height: 81%;border: 0;background-color: #85C45C;color: white;cursor: pointer;margin-left: 2%;}
+.administratorlist_add_li{width: 19.85%;height: 14%;margin-left: 5%;text-align: center;margin-top:-1.4%;display: none;position: absolute;background-color: white;z-index: 999;}
+.administratorlist_add_li>li{border: 1px solid #A9A9A9;padding: 2%;}
+.administratorlist_add_bcbutton{width: 15%;height: 32px;margin: 40px 0 0 80px;}
+.administratorlist_add_bcbutton>button{width: 77%;height: 32px;border: 1px solid #85C45C;background-color: #85C45C;color: white;cursor: pointer;}
+
+/*提成管理*/
+.commission_select select{width: 230px;height: 30px;color:#504E4E;}
+.commission_select input{width: 226px;height: 25px;}
+.rightbutton_adddeleteli input:hover{background-color: #85C45C;color: white;}
+.rightbutton_adddeleteli input{border: 1px solid #85C45C;color: #85C45C;}
+/*保存成功提示框*/
+#save_success{margin-left:500px;background-color: white;margin-top: 0;}
+#save_success p{font-size: 16px;line-height: 162px;}
+#save_success_password{margin-left: 40%;margin-top: 1%;background-color: white;}
+#save_role{margin-left: 40%}
+#save_password{position: absolute;margin-left:500px;top: 50%}
+#save_princ{margin-left: 400px}
+#affirm_set{margin-left: 400px}
+#save_success,#save_success_password,#save_role,#save_password,#save_princ,#affirm_set{width: 286px;height: 182px;border: 1px solid #d2d2d2;}
+#save_success_password p,#save_role p,#save_password p,#save_princ p,#affirm_set p{font-size: 16px;line-height: 162px;margin-left: 110px}
+#save_success button,#save_success_password button,#save_role button,#save_password button,#save_princ button,#affirm_set button{width: 83px;height: 25px;color:white;
+background-color: #85c45c;border: 0;display: none;margin-top: -40px;margin-left:100px;}
+/*角色列表*/
+.add_role_list{width: 98%;height: 56px;border: 1px solid #d2d2d2;background-color: white;margin: 1%;}
+.add_role_list>div{width: 13%;height: 39px;border: 1px solid #79bf4c;border-radius: 3px;margin: 8px 20px 0;cursor: pointer}
+.add_role_list>div>a>p{font-size: 14px;color: #79bf4c;line-height: 39px;text-align: center;font-weight: normal}
+.add_role_list>div>a>p:hover{background-color: #85C45C;color: white;font-size: 16px;}
+.add_role_list_table{width: 98%;border: 1px solid #d2d2d2;margin: 1% 0 0 1%;background-color: white;height: 720px;}
+.add_role_list_table ul{margin: 1% 1%; width: 98%;border: 1px solid #d3d3d3;border-left: none;border-bottom: none}
+.add_role_list_table ul li{width: 100%;height: 47px;border-bottom: 1px solid #d3d3d3;}
+.add_role_list_table ul li span{display: block;float: left;text-align: center; line-height: 47px;border-left:1px solid #d3d3d3 ;}
+.add_role_list_number{width: 8%}
+.add_role_list_role_name{width: 12%}
+.add_role_list_rle_describe{width: 28%}
+.add_role_list_statue{width: 10%}
+.add_role_list_operation{width: 41.1%}
+
+.add_role_list_operation button{width:100px;height:30px;border: 1px solid #E5E5E5;background-color: white;color: #7D7D7D;margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.add_role_list_operation button:hover{border:1px solid #85C45C;color: #85C45C;}
+.suspend{width: 80px;height: 35px;margin-left: -5%;position: relative;}
+.jurisdiction{width: 148px;height: 35px;margin-left: 22%;margin-top: 7px;}
+.jurisdiction_content{margin-top: -5px}
+.return{width: 98%;height:56px;border: 1px solid #d2d2d2;background-color: white;margin-left: 1%;margin-top: 1%;}
+.return>div{width: 128px;height: 40px;background-color: #85c45c;margin: 8px 8px 0;cursor: pointer;float: left}
+.return>div>p{line-height: 40px;text-align: center;color: white;}
+.jurisdiction_selected>div{border: 1px solid #d2d2d2;width: 97%;margin: 20px 20px 0}
+.system_selected{height: 70px}
+.user_manage{width: 100%;height: 40px;line-height: 40px;background-color: #76B1B0}
+.user_manage input{width: 20px;height: 20px;margin: 0 7px;vertical-align: middle;}
+.user_manage span{color: #f0f6ec;display: inline-block;vertical-align: middle;}
+.system_selected li{float: left;margin-left: 3%;padding-bottom:0px;padding-top: 15px}
+.system_selected li span{margin-left: 5px;display: inline-block}
+.system_selected li input{width: 18px;height: 18px;float: left;}
+/*客户预约*/
+.service_order{width: 98%;height: 730px;border: 1px solid #d2d2d2;background-color: white;margin: 20px 15px 0}
+.admin_service{width: 97%;height: auto;border: 1px solid #d2d2d2;border-collapse: collapse;margin: 20px 15px 0}
+.admin_service button{border: 1px solid #d2d2d2;color: #7D7D7D;background-color: white;height: 25px;width:26%;cursor: pointer;margin: 0 5px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.admin_service button:hover{color: #85C45C;border:1px solid #85C45C;}
+/*员工管理*/
+#add_principal,#add_house{cursor: pointer;}
+.admin_list_list td{height: 35px}
+.staff_botton{margin: 0 auto;}
+.staff_botton button{border: 1px solid #E5E5E5;background-color: white;width: 80px;color: #7D7D7D;height: 30px;margin-left: 10px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.staff_botton button:hover{color: #85C45C;border: 1px solid #85C45C;}
+.menuTitle button{width: 7%;height: 35px;background-color: #85C45C;color: white;border: 0;outline: 0;cursor: pointer;margin-top:0.7%;margin-left: 1%;}
+/*增加角色*/
+.add_role_div{width: 98%;min-height:720px;border: 1px solid #d2d2d2;background-color: white;margin: 1%;}
+.add_role_div_div{width: 587px;padding: 2%;}
+.add_role_div_div input{width: 304px;height: 38px;border-radius: 5px;border:1px solid #d2d2d2}
+.add_role_div_div p{margin-top: 57px}
+.add_role_div_div p input{width: 13px;height: 13px}
+.add_role_div_div button{width: 108px;height: 35px;border: 2px solid #85c45c;margin-top: 55px;}
+.add_role_div_div>span+input+span{margin-left: 20px}
+#add_role .save{background-color: #85c45c;margin-left: 17%;color: white;}
+#add{background-color: white;margin-left: 30px}
+#save_role{width: 286px;height: 182px;border: 1px solid #d2d2d2;margin-left: 40%}
+#save_role img{margin-top: 20px;margin-left: 110px;position: absolute}
+#save_role button{width: 83px;height: 25px;background-color: #85c45c;margin-left:100px;color: white;margin-top:100px}
+.add_role_button{background-color: white;color: #85c45c;margin-left: 5%;}
+/*密码管理*/
+.password_manage{width: 98%;min-height: 735px;background-color: white;margin: 1%;border: 1px solid #d2d2d2}
+.asdsadsadsad{width: 453px;height:268px;margin-left: 25px;margin-top: 30px}
+.password_manage>div>div input{width: 280px;height: 38px;border: 1px solid #d6d6d6}
+.password_manage>div>div button{width: 108px;height: 35px;background-color: #85c45c;border: none;margin-top: 53px;margin-left: 150px;color: white;}
+#before_password_,#new_password_,#affirm_password_{margin-left: 0px}
+/*楼盘管理*/
+#search{float: right;}
+.housemanage_button{margin: 4% auto;}
+.housemanage_button button{border: 1px solid #d5d5d5;background-color: white;width: 27%;color: #7D7D7D;margin-left: 10px;height: 27px;box-shadow: 1px 1px 5px rgba(0,0,0,.1);}
+.housemanage_button button:hover{color: #85C45C}
+/*增加楼盘*/
+#return{width: 98%;height: 54px;border: 1px solid #d2d2d2;background-color: white;margin: 1%;}
+#return>div{width: 128px;height: 40px;background-color: #85c45c;margin: 8px 8px 0;cursor: pointer}
+#return p{color: white;line-height: 40px;text-align: center;font-size: 16px}
+#add_house_selected{width: 98%;height: 650px;background-color: white;margin-top: 30px;margin-left: 16px;border: 1px solid #d2d2d2;}
+.add_house_selected_div{margin-left: 10px;width: 435px;height: 464px;}
+.add_house_selected_div ul li select:hover{border: 1px solid #85C45C}
+.province,.city,.county{margin-left: 35px}
+.selected_house,.selected_principal{width: 203px;height: 38px;margin-left: 88px}
+#province,#city,#county{width: 203px;height: 38px;color: #504E4E;margin-left: 20px;border: 1px solid #d2d2d2}
+.selected_house input,.selected_principal input{color: #504E4E;border:1px solid #d2d2d2;width: 201px;height: 39px}
+.selected_house input[placeholder]{text-indent: 5px}
+.selected_house{margin-top: 30px;border-bottom: 1px solid #d2d2d2;}
+.selected_principal+span{background-color: #85C45C;color: white;display: inline-block;height: 38px;
+    width: 100px;line-height: 38px;text-align: center;cursor: pointer;position: relative;margin-left: 303px;top: -38px}
+.selected_principal{margin-top: 30px;}
+.selected_principal select{width: 203px;height: 38px;border: 1px solid #d2d2d2;color: #504E4E}
+.selected_principal select option{height: 38px;text-indent:80px;color: #504E4E}
+.selected_principal select:hover{border:1px solid #85c45c}
+.selected_house input:hover{border:1px solid #85c45c;border-bottom: 1px solid #85C45C;position: absolute}
+.house_span{display: inline-block;margin-top:11px;position: absolute;margin-left: 30px}
+#principal{display: inline-block;margin-top: 11px;position: absolute;margin-left: 15px;}
+.add_house_selected_div button{width: 120px;height: 35px;color: white;margin-top: 20px;border: 0;cursor: pointer;}
+.house_savee{background-color: #85c45c;margin-left: 70px}
+.house_save{background-color: #85c45c;margin-left: 70px}
+.house_cancel{background-color: #cccccc;margin-left: 15px}
+#menuTitle li{margin-top: 30px}
+/*保存成功提示框*/
+#save_success{margin-left:500px;background-color: white;margin-top: 0;}
+#save_success_password{margin-left: 40%;margin-top: 1%;background-color: white;}
+#save_role{margin-left: 40%}
+#save_password{position: absolute;margin-left:500px;top: 50%}
+#save_princ{margin-left: 400px}
+#affirm_set{margin-left: 400px}
+#save_success,#save_success_password,#save_role,#save_password,#save_princ,#affirm_set{width: 286px;height: 182px;border: 1px solid #d2d2d2;}
+#save_success p,#save_success_password p,#save_role p,#save_password p,#save_princ p,#affirm_set p{font-size: 16px;line-height: 162px;text-align: center;}
+#save_success button,#save_success_password button,#save_role button,#save_password button,#save_princ button,#affirm_set button{width: 83px;height: 25px;color:white;
+background-color: #85c45c;border: 0;display: none;margin-top: -40px;margin-left:100px;}
+/*图片设置*/
+.picture_set>div{width: 96%;min-height: 733px;border: 1px solid #d2d2d2;background-color: white;margin: 1% 1%}
+.picture_set>div>div{margin: 0px 60px}
+.picture_intro{color: #919191;margin-left: 239px;position: absolute}
+#preview{width: 640px;height: 200px;background-color: #858585;}
+#imghead{width: 640px;height: 200px;}
+#pic_path{display: none}
+#input_path{background:none;border: none;width: 0;}
+#uploading{color: white;background-color: #858585;font-size: 18px;border: none;cursor: pointer;position: absolute;top:154px;margin-left: 269px}
+.picture_font{text-align: center;margin-top: 20px}
+.picture_set button{width: 442px;height: 50px;background-color: #85c45c;margin-left: 90px;margin-top: 53px;color: white;font-size: 16px;border: none;}
+.box1,.box2,.box3{width: 20px;height: 20px;border: 1px solid #d2d2d2;display: inline-block;cursor: pointer;vertical-align: middle;}
+#select{width: 450px;margin-top: 30px;padding-bottom: 10px}
+.box1>img,.box2>img,.box3>img{width: 20px;height: 20px;display:inline-block;}
+.duankou{display: inline-block;margin-left: 10px;vertical-align: middle;}
+.box2,.box3{margin-left: 30px}
+/*提成管理*/
+.commission_top{width: 98%;margin:1% 1%;background-color: white;height: 50px;border: 1px solid #d2d2d2;}
+.commission_top input{height: 35px;margin:1% 1%;width: 140px;}
+.commission_top button{width: 100px;height: 35px;background-color: #85C45C;color: white;margin: 4% 0;border: 0}
+/*增加负责人*/
+.add_principal{width: 98%;min-height: 660px;border:1px solid #d2d2d2;background-color: white;margin:1%;}
+.add_principal>div{width: 450px;height: 300px;margin: 20px 20px 0}
+.add_principal>div>p{margin-top: 20px}
+.add_principal>div>p input{width: 280px;height: 35px;border: 1px solid #d2d2d2}
+.add_principal>div>p input[placeholder]{text-align: center}
+.add_principal>div>button{width: 280px;height: 35px;border:1px solid #d2d2d2;background-color: #85C45C;color: white;margin: 20px 0 0 61px}
+.admin_listcontent{width: 94%;height:720px;margin: 1% 1%;padding: 2% 2% 0 2%;}
+.admin_addcontent_box{width: 94%;margin: 1% 1%;padding: 2%;}
+.admin_addcontent_box input[type=text]{height: 30px;margin: 0 auto;line-height: 30px;padding: 0 5px;border: 1px solid #ccc;box-shadow: 1px 1px 5px rgba(0,0,0,.1) inset;color: #333;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.admin_addcontent_box select{height: 30px;margin: 0 auto;line-height: 30px;padding: 0 5px;border: 1px solid #ccc;color: #333;}
+.admin_listcontentmesa{width: 94%;height:100%;margin: 1% 1%;padding: 2%;}
+.missadmin_table{width: 95%;height: 715px;margin:0% 1%;}
+.admin_listcontent_huifang{width: 94%;height: 700px;margin: 1.5% 1%;padding: 2%;}
+.service_order{width: 98%;height: 750px;margin: 20px 15px 0;}
+.mainMenu{width:98%;height:750px;margin:1%;padding: 2% 0;}
+.addcar{width:98%;height:736px;margin:1%;padding: 2% 0;}
+.oneMenu{width:98%;height: 680px;margin:1%;padding: 2% 0;}
+.administratorlist_table{width: 94%;height: 700px;margin: 1% 1%;padding: 1% 2%;}
+.add_role_list_table{width: 98%;height: 750px;margin: 1% 0 0 1%;}
+.jurisdiction_selected{width: 98%;height:735px;margin: 1% 0 0 1%;padding: 0 0 4% 0;}
+.admin_listcontent,.admin_addcontent_box,.admin_listcontentmesa,.missadmin_table,.admin_listcontent_huifang,.service_order,.mainMenu,.addcar,
+.oneMenu,.administratorlist_table,.add_role_list_table,.jurisdiction_selected{border: 1px solid #d2d2d2;background-color: white;}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js"></script>
+		<script type="text/javascript" src="js/yanzheng.js" ></script>
+		<script type="text/javascript" src="js/Administrator.js"></script>
+	</head>
+	<body>		
+        <div class="add_admin">
+        	<div class="administratorlist_add_input">
+				<p class="administratorlist_add_inputcon">
+					<label>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</label>
+					<input type="text" class="administratorlist_add_inputp" id="user"><span id="user_"></span>
+				</p>
+				<p class="administratorlist_add_inputcon">
+					<label>真实姓名:</label>
+					<input type="text" id="name" class="administratorlist_add_inputp"><span id="name_"></span>
+				</p>
+				<p class="administratorlist_add_inputcon">
+					<label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+					<input type="password" class="administratorlist_add_inputp" id="password_again"><span id="password_again_"></span>
+				</p>
+				
+				<p class="administratorlist_add_inputcon">
+					<label>所属角色:</label>
+					<select name="" id="select_manage"></select>
+				<div class="administratorlist_add_bcbutton">
+					<button onclick="saves()" flog="id">保存</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

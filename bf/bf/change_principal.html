@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<script type="text/javascript" src="js/index.js" ></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+<script type="text/javascript" src="js/yanzheng.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script src="js/change_principal.js"></script>
+<body>
+        <div id="return"><div><p onclick="history.go(-1)">返回</p></div></div>
+        <div class="add_principal">
+            <div>
+                <p>&nbsp;&nbsp;&nbsp;<span>姓名:</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder="姓名" id="names"/><span id="names_"></span></p>
+                <p><span>手机号:</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder="手机号" id="numbers"/><span id="numbers_"></span></p>
+                <p>&nbsp;&nbsp;&nbsp;<span>性别:</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder="性别" id="sex"/><span id="sex_"></span></p>
+                <!-- <p>&nbsp;&nbsp;&nbsp;<span>密码:</span>&nbsp;&nbsp;&nbsp;<input type="password" placeholder="密码" id="pass"/><span id="password"></span></p> -->
+                <button onclick="save_princ()" class="bc_change_principal">保存</button>
+            </div>
+        </div>
+</body>
+</html>

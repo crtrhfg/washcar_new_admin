@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/yanzheng.js" ></script>
+		<script type="text/javascript" src="js/pccss.js" ></script>
+		<script src="js/jquery.page.js"></script>
+		<script type="text/javascript" src="js/house_manage.js"></script>
+	</head>
+	<body>		
+	<div class="add_house">、
+			<div id="return"><div><p onclick="history.go(-1)">返回</p></div></div>
+		<div id="add_house_selected">
+		<div id="menuTitle" class="add_house_selected_div">
+			<ul>
+				<li><span class="province">省市:</span><select name="province" id="province"></select></li>
+				<li><span class="city">城市:</span><select name="city" id="city"></select></li>
+				<li><span class="county">县区:</span><select name="county" id="county"></select></li>
+				<script>setup()</script>
+			</ul>
+			<div>
+				<span class="house_span">楼盘：</span>
+				<div class="selected_house"><input id="aa" type="text" placeholder="楼盘"/></div>
+				</div>
+			<div>
+				<span id="principal">负责人：</span>
+				<div class="selected_principal">
+					<select name="" id="selects"></select>
+					</div><span>增加负责人</span>
+				</div>
+			<button class="house_save">保存</button>
+			<button class="house_cancel">取消</button>
+			</div>
+		</div>
+    </div>
+	</body>
+
+</html>

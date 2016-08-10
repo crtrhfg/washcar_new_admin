@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+	</head>
+	<body>
+    	<div class="oneMenu carlist">   				
+        	<ul class="list">            
+            </ul>
+            <div class="oneMenuTab carAdmin">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>品牌</td>
+                            <td>车辆型号</td>
+                            <td>所属车型</td>
+                            <td width="17%">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+	                </tbody>
+                </table>
+            </div>       
+        <div class="mainMenualert del alertOne"><p><img src="./img/warn.png"/><span>是否删除该管理</span></p>
+            <button class="confirm sure">确定</button>
+            <button class="cancel">取消</button>
+        </div>
+		<div class="tcdPageCode"></div>
+        <script type="text/javascript" src="js/jquery.page.js"></script>
+        <script>
+			fullAdminList(1,function (count){
+				$(".tcdPageCode").createPage({
+				  pageCount:count,
+				  current:1,
+				  backFn:function(p){
+					fullAdminList(p)
+				  }
+				});
+			});
+			function fullAdminList(page,fn){
+				!page&&(page=1);
+				$.ajax({
+					url:"http://www.nbinbi.com/waterObj/index.php/Admin/Brand/selCarBrand",
+					method:"get",
+					dataType:"jsonp",
+					data:{"page":page},
+					success:function(data){
+						console.log(data,page);
+						if(data.status = 1){
+							var count =Math.ceil(data.len/14);
+							var str="";
+							var strHead="";
+							$.each(data.data,function(index,val){
+								str+="<tr>"+
+									"<td>"+((page-1)*14+index+1)+"</td>"+
+									"<td>"+val.brand+"</td>"+
+									"<td>"+val.model+"</td>"+
+									"<td>"+val.cartype+"</td>"+
+									"<td><a class='carChange' href='car-change.html?flog="+val.cbid+"'>修改</a><a class='carDelete' href='javascript:;' flog="+val.cbid+">删除</a></td>"+
+									"</tr>"
+							})
+							strHead+="<li class='carAdd'>增加</li>"
+							$('.carAdmin').find('tbody').html(str);
+							$('.list').html(strHead);
+							fn&&fn(count);						
+						}
+						//点击增加
+						$('.carAdd').click(function(){
+							location.href="car-add.html";
+						});	
+						//点击删除
+						$('.carDelete').click(function(){
+							var This=$(this);
+							$('.mainMenualert').show();
+							$('.mainMenualert .sure').unbind("click");
+							$('.mainMenualert .sure').bind("click",function (){
+								This.parent().parent().remove();
+								$('.mainMenualert').hide();
+								var arrFlag='';
+								arrFlag=This.attr('flog');								
+								$.ajax({
+									url:"http://www.nbinbi.com/waterObj/index.php/Admin/Brand/delCarBrand",	
+									method:"get",
+									dataType:"jsonp",
+									data:{"cbid":arrFlag},
+									success:function(data){
+										try{
+											alert(data.msg);
+											location.reload(true);		
+										}catch(e){
+										}										
+									}
+								})								
+							});
+							$('.mainMenualert .cancel').bind("click",function(){
+								$('.mainMenualert').hide(); 
+							});
+						});
+					}
+				});
+			}
+        </script>
+    </div>
+	</body>
+</html>

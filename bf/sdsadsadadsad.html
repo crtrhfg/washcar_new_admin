@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>		
+			*{margin: 0;padding: 0;}
+			.dwqwewq{min-width: 1280px;height: 100%;}
+			.sd{width: 100%;height: 55px;background-image: url(img/headbackground.png);}
+			p{width: 15%;float: left;text-align: center;line-height: 55px;font-family: "微软雅黑";}
+			p:hover{background-color: #7D7D7D;color: white;}
+			.content{width: 100%;height: 920px;}			
+			/*左边样式*/			
+			.content_left{width: 14%;height: 100%;text-align: center;background-color: #FFFFFF;float: left;}
+			.content_left_mean{background-color: #9FD77A;color: white;padding: 7%;}
+			.content_left_list{background-color: #E3E3E3;border-bottom: 1px solid #D4D4D4;border-top:1px solid #D4D4D4;font-weight: bold;height: 27px;}
+			.content_left_listimgdown{background-image:url(../img/down.png);width: 11%;height: 100%;margin: -7% 72%;background-repeat: no-repeat;}
+			.content_left_listimgup{background-image:url(../img/up.png);width: 11%;height: 100%;margin: -7% 72%;background-repeat: no-repeat;}
+			.huadongchange{width: 100%;height: 300px;background-color: white;}
+			.content_left_listbox{width:100%;height:89%;color: #686868;cursor: pointer;line-height: 30px;}	
+			.left_chosestyle{padding: 10px;color: #747474;cursor: pointer;}
+			.bannerfoot{background:#85C45C;text-align:center;color: white;font-size: 16px;width: 100%;height:19%;}
+			.bannerfoot>p{width: 100%;}
+			/*左边隐藏栏样式*/
+			.content_left_listhideo,.content_left_listhidet,.content_left_listhidef,.content_left_listhides,.content_left_listhidee{display: none;}
+			.gengxin{position: relative;font-size: 15px;width: 8.3%;height: 20px;background-color: #F84682;color: white;display: block;border-radius: 50%;float: right;margin-right: 6%;}
+			/*右边部分头部*/
+			.content_right{width: 86%;height: 100%;float: left;background-color: #F2F2F3;} /**/
+			.content_right_top{width: 7%;height: 5%;background-color: #90C96B;}
+			.content_right_topimg{background-image:url(../img/smallfork.png);width: 14%;height: 41%;margin: -21% 87%;background-repeat: no-repeat;}
+			.content_right_topcont>a{color: white;}
+			.content_right_topcont{width: 83%;height: 100%;text-align: center;margin-top: 8%;margin-left: 11%;}
+			/*登录*/
+			.logincenter{width:472px;min-height: 520px;margin:9% auto;}
+			.loginimg{width: 80%;margin: auto; text-align: center;}
+			.logininput{width: 80%;height: 300px;margin: auto;}
+			.logininput>span{color: white;text-align: center;margin-bottom: 11%;font-size: 31px;margin-top: 6%;font-family: "微软雅黑";margin-left: 4%;}
+			.logininput_input{margin:8% auto;background-color: white;height: 56px;margin-bottom: 5%;border-radius: 4px;}
+			.logininput_input>div{width: 10%;float: left;line-height: 69px;margin-left: 2%;}
+			.logininput_input>input{width: 84%;height: 50px;margin: 1%;border: 0;outline: 0;font-size:16px;}
+			.loggintishi{color: #B9BDC3;font-size: 16px;}
+			.logincenter>input{width: 80%;font-size:20px;height: 50px;margin: auto;background-color: #85C45C;color: white;border: 0;outline: 0;cursor: pointer;margin-left: 10%;border-radius: 4px;}
+			/*index右边部分 大框架*/
+			.content_right_tuxingtongji{width: 90%;height: 100%;padding: 1% 5%;}
+			.content_right_tuxingtongji>div>div{width: 25%;height: 100%;float: left;margin-right: 4%;margin-bottom: 4%;background-color: white;padding: 1% 2% 0 2%;}
+			.content_right_tuxingtongji>div>div>h1{font-size: 25px;font-weight: 100;}
+			.content_right_tuxingtongji>div>div>div>p{text-align: center;}
+			.content_right_tuxingtongji>div>div>.index_imgcenter{width: 40%;height: 62%;margin: auto;}
+			.index_p{margin-bottom: 17px;}
+			.adminmessage_tuxingtongji>img{float: left;}
+			.adminmessage_tuxingtongji>h1,.adminmessage_tuxingtongji>h3{text-align: center;font-size: 25px;font-weight: 100;margin-top: 7%;}
+			.content_right_tuxingtongji>div>div>p{text-align: center;margin-top: 14%;}
+			.content_right_tuxingtongji>div>div>a>button{width: 117%;margin-left:-9%;height:39px;margin-top: 2%;border: 1px solid #F6F6F6;background-color: #F6F6F6;font-size: 19px;color: #737373;cursor: pointer;}
+	</style>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script>
+		$(function(){
+			$(".yhguanlibutton").bind("click",function(){
+				$(".content_left_listhideo").slideToggle();
+				
+			});
+		});
+			
+		</script>
+	</head>
+	<body>
+	<div class="dwqwewq">
+		<div class="sd">
+			<div style="width:20%;height: 100%;float: left;">
+				<img src="img/header_left.png"  width="100%"  height="100%"/>
+			</div>
+			<div style="width:25%;height: 100%;float: right;">
+				<img src="img/admin.png" width="14%" height="100%"  style="vertical-align: middle;margin-right: 2%;float: left;"/>
+				<p>用户名</p>
+				<p>登陆</p>
+				<p>退出</p>
+			</div>
+		</div>
+		<div class="content">
+			<div class="content_left">
+				<ul style="height: 41%;" id="dwqqeqw">
+					<li class="content_left_mean">菜单</a></li>							
+					<!--用户管理-->
+					<li class="content_left_list yhguanlibutton">
+						<div class="content_left_listbox">用户管理
+							<div class="content_left_listimgdown listimgo"></div>
+						</div>
+					</li>
+					<div class="content_left_listhideo hover_green">
+						<a href="admin_list.html" target="index"><li class="left_chosestyle admin_list_opnew">订单用户</li></a>
+						<a href="admin_add.html" target="index"><li class="left_chosestyle admin_add_opnew">新增用户</li></a>
+						<a href="tryadmin.html" target="index"><li class="left_chosestyle tryadmin_opnew">体验用户</li></a>
+						<a href="missadmin.html" target="index"><li class="left_chosestyle missadmin_opnew">失效用户</li></a>
+					</div>
+					
+					
+					<!--用户回访-->
+					<li class="content_left_list yhhuifangbutton">
+						<div class="content_left_listbox">用户回访
+								<div class="content_left_listimgdown listimgt"></div>
+						</div>
+					</li>
+					<div class="content_left_listhidet hover_green">
+						<a href="daoqitixing.html" target="index"><li class="left_chosestyle daoqitixing_opnew"><font style="margin-left:14%">到期提醒</font><span class="gengxin">0<span></li></a>
+						<a href="huifangjilu.html" target="index"><li class="left_chosestyle huifangjilu_opnew">回访记录</li></a>
+						<li class="left_chosestyle" style="display: none;">投诉建议</li>
+						<a href="service_order.html" target="index"><li class="left_chosestyle service_order_opnew">客服预约</li></a>
+					</div>
+					
+					
+					<!--业务定制-->
+					<li class="content_left_list yedingzhibutton">
+						<div class="content_left_listbox">业务定制
+								<div class="content_left_listimgdown listimgf"></div>
+						</div>
+					</li>
+					<div class="content_left_listhidef hover_green">
+						<a href="taocanlist.html" target="index"><li class="left_chosestyle taocanlist_opnew">套餐列表</li></a>
+						<a href="taocanlist_add.html" target="index"><li class="left_chosestyle taocanlist_add_opnew">增加套餐</li></a>
+						<a href="taocanlist_oncelist.html" target="index"><li class="left_chosestyle taocanlist_oncelist_opnew">单次服务列表</li></a>
+						<a href="taocanlist_addxiangmu.html" target="index"><li class="left_chosestyle taocanlist_addxiangmu_opnew">增加单次服务</li></a>
+					</div>						
+					<!--现金用户-->				
+					<li class="content_left_list nochildrenl">
+						<a href="moneyadmin.html" target="index">
+							<div class="content_left_listbox">现金用户</div>
+						</a>
+					</li>					
+					<!--统计报表-->
+					<li class="content_left_list tjbaobiaobutton">
+						<div class="content_left_listbox">统计报表
+							<div class="content_left_listimgdown listimgs"></div>
+						</div>
+					</li>
+					<div class="content_left_listhides hover_green">
+						<a href="statisticslist.html" target="index"><li class="left_chosestyle statisticslist_opnew">清单</li></a>
+						<a href="statisticslist_tuxing_admin.html" target="index"><li class="left_chosestyle statisticslist_admin_opnew">数据统计</li></a>
+					</div>					
+					<!--权限管理-->
+					<li class="content_left_list qxguanlibutton">
+						<div class="content_left_listbox">权限管理
+							<div class="content_left_listimgdown listimge"></div>
+						</div>
+					</li>
+					<div class="content_left_listhidee hover_green">
+						<a href="administratorlist.html" target="index"><li class="left_chosestyle administratorlist_opnew">管理员列表</li></a>
+						<a href="role_list.html" target="index"><li class="left_chosestyle role_opnew">角色列表</li></a>
+					</div>
+					
+					<!--车辆管理-->
+					<li class="content_left_list nochildrenlz">
+						<a href="car.html" target="index">
+							<div class="content_left_listbox">车辆管理</div>
+						</a>
+					</li>
+					
+					<li class="content_left_list nochildrenly">
+						<a href="staff_management.html" target="index">
+							<div class="content_left_listbox">员工管理</div>
+						</a>
+					</li>
+					<li class="content_left_list nochildrenli">
+						<a href="house_manage.html" target="index">
+							<div class="content_left_listbox">楼盘管理</div>
+						</a>
+					</li>
+					<li class="content_left_list nochildrenlii">
+						<a href="password_manage.html" target="index">
+							<div class="content_left_listbox">密码管理</div>
+						</a>
+					</li>
+					<li class="content_left_list nochildrenliii">
+						<a href="picture_set.html" target="index">
+							<div class="content_left_listbox">图片设置</div>
+						</a>
+					</li>					
+				</ul>
+				<div style="width: 100%;background-color: white;height: 10.8%;margin-top: 100%;"></div>
+				<div class="bannerfoot">
+					<p>中在信联科技技术支持</p>
+				</div>
+			</div>			
+			<div class="content_right">
+				<div class="mainHeader"></div>
+				<iframe src="shouye.html" width="99%"  name="index" frameborder="0" id="iframe" height="96%"></iframe>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

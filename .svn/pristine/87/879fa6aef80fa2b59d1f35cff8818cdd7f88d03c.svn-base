@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/taocanadd.js" ></script>
+	</head>
+	<body >
+		<div class="addcar">
+        	<div class="addcarCon">
+            	<ul>
+                    <li>
+                    	<span>车辆类型：</span>
+                        <select class="cartype">
+                            <option>不限</option>
+                        </select>
+                    </li>
+                    <li><span>套餐类型：</span><input type="text" placeholder="包月套餐" id="ratename" /></li>
+                    <!-- 修改部分 -->
+                    <li id="yes"><em>是否为包月套餐 :</em><span><input type="radio" name="yes"  value="1" />是</span><span><input class="no" type="radio" value="0" name="yes" />否</span></li>
+                    <li class="else"><span>内饰：</span><div class="addone"><input type="text" placeholder="次数" id="innum" /><span class="span1">外饰：</span><input type="text" placeholder="次数" id="outnum" /></div></li>
+                    <li><span>金额：</span><input type="text" placeholder="68" id="price" /></li>
+                    <li class="loupan_select">
+                    	<span>楼盘：</span>
+                        <select class="city_numO" onchange="sheng(this.value)">
+                            <option>请选择省份</option>
+                            <option>所有</option>
+                        </select>
+                        <select class="city_numT" onchange="cheng(this.value)">
+                            <option>请选择城市</option>
+                        </select>
+                        <select class="city_numF" onchange="aheng(this.value)">
+                            <option>请选择区</option>
+                        </select>							
+                        <select class="city_numS" onchange="hheng()">
+                            <option>请选择楼盘</option>
+                        </select>
+                    </li>
+                </ul>
+                <div id="radio">
+                	<strong>是否允许套餐合用:</strong>
+                    <div><input type="radio" name="sure" value="1" />是</div>
+                    <div><input type="radio" name="sure" value="0" />否</div>
+                </div>
+                <div class="area">
+                    <span>套餐说明：</span>
+                    <textarea id="redesc"></textarea>
+                </div>
+                <div class="taocanlist_button">
+                    <button class="active">确定</button>
+                    <button class="graybackground">取消</button>
+                </div>
+                
+            </div>
+        </div>
+            
+        <script>
+			cityO();
+			carType();
+			$('.no').attr('checked','checked');
+			var mStatus='';
+			var outnum='';
+			$('#yes input').change(function(){
+				var Month=$('#yes input[name=yes]:checked').val()
+				mStatus=Month;
+				if(Month==1){
+					$('.span1').hide();
+					$('#outnum').hide();
+					$('#outnum').val('包月');
+				}else{
+					$('.span1').show();
+					$('#outnum').show();	
+				}	
+			});
+			
+			
+			$('.city_numO').change(function(){
+						if($(this).val()!='所有'){
+							$('.city_numT').show();
+							$('.city_numF').show();
+							$('.city_numS').show();
+						}else if($(this).val()=='所有'){
+							$('.city_numT').hide();
+							$('.city_numF').hide();
+							$('.city_numS').hide();
+							oid=0;
+						}
+					});
+			
+			
+			$('.taocanlist_button .active').click(function(){
+			//console.log($('#radio input[name=sure]:checked').val());
+				var cartype=$('.cartype option:selected').text();
+				var ratename=$('#ratename').val();
+				var innum=$('#innum').val();
+				var outnum=$('#outnum').val();
+				var price=$('#price').val();
+				var vid=oid;
+				var redesc=$('#redesc').val();
+				var allowshare=$('#radio input[name=sure]:checked').val();
+				
+				
+				//console.log(cartype+'\n',ratename+'\n',innum+'\n',outnum+'\n',price+'\n',oid+'\n',redesc+'\n',allowshare+'\n');
+				if($('.city_numO option:selected').text()=='请选择省份'){
+					vid=0;
+				}else{
+					vid=oid;	
+				}
+				
+				//console.log(vid,$('.city_numO option:selected').text());
+				if(!cartype || !ratename || !innum  || !price || !redesc||!allowshare){
+          		 alert("请检查是否填写完整？");      //**************
+         		  return;
+     		  	}
+				$.ajax({
+					url:'http://www.nbinbi.com/waterObj/index.php/Admin/Complex/addRateMonth',
+					method:'get',
+					dataType:"jsonp",
+					data:{"cartype":cartype,"ratename":ratename,"innum":innum,"outnum":outnum,"price":price,"vid":vid,"rmdesc":redesc,"allowshare":allowshare,"mStatus":mStatus},				
+					success:function(data){
+						try{
+							data.status=1&&history.go(-1);	//**************
+							alert(data.msg);							
+						}catch(e){							
+						}						
+					}
+				});
+			});
+		$('.graybackground').click(function(){
+			location.href="taocanlist.html";	
+		});		
+        </script>          
+	</body>
+</html>

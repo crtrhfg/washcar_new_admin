@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/admin.js"></script>
+		<script type="text/javascript" src="js/picture.js"></script>
+	</head>
+	<body>		
+		<div class="picture_set">
+			<div>
+				<div id="select">
+					<span class="box1"><img src="./img/checked.png" flog="1"/></span><span class="duankou">员工端-个人中心</span>
+					<span class="box2"><img src="./img/checked.png"  flog="2"/></span><span class="duankou">客户端-首页</span>
+					<span class="box3"><img src="./img/checked.png"  flog="3"/></span><span class="duankou">客户端-预约</span>
+				</div>
+				<div>
+					<div id="preview">
+						<img id="imghead" src=""/>
+					</div>
+					<form name="form1" enctype="multipart/form-data" action="http://www.nbinbi.com/waterObj/index.php/Home/Login/photo" method="post" id="form">
+						<input type="file" onchange="previewImage(this)" name="picpath" id="pic_path"  onChange="document.form1.path.value=this.value"/>
+						<input name="photo" readonly id="input_path">
+						<input type="hidden" name="web" value="2"/>
+						<input type="button" value="点击上传" onclick="document.form1.picpath.click()" id="uploading">
+						<input class="kv" type="hidden" name="webnum">
+						<input id="suba" type="submit" value="提交" style="display: none"/>
+					</form>
+					<!--<p class="picture_intro">图片大小：640px*200px</p>-->
+					<button id="sub">确认设置</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

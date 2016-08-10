@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/admin_list.js" ></script>
+	</head>
+	<body>
+		<div class="menuTitle">
+        	<ul>
+            	<li><select class="city_numO" onchange="sheng(this.value)">
+				    	<option>请选择省份</option>
+				    </select>
+            	</li>
+            	<li><select class="city_numT" onchange="cheng(this.value)">
+						<option>请选择城市</option>
+					</select>
+            	</li>
+            	<li><select class="city_numF" onchange="aheng(this.value)">
+						<option>请选择城市</option>
+					</select>
+            	</li>
+				<li><select class="city_numS">
+						<option>请选择楼盘</option>
+					</select>
+				</li>
+        	</ul>
+            <div class="search">
+            	<input type="text" placeholder="关键字" class="guanjianzi_chaxun"/>
+                <input type="button" value="查询" class="guanjianzi_chaxun_but"/>
+            </div>
+            <div class="rightbutton_adddeleteli">
+            	<a href="admin_add.html"><input type="button" value="增加用户" /></a>
+            </div>
+			<select style="margin-top:1%;" class="paystatus_se">
+				<option>请选择支付类型</option>
+				<option>现金支付</option>
+				<option>微信在线支付</option>
+			</select>
+        </div>
+		<div class="admin_listcontent">
+			<div class="dancitaocan_button">
+            	<button class="missadmin_qiehuan" web="1">套餐用户</button>
+                <button  web="2" >单次用户</button>
+            </div>
+			<table class="admin_list_list">
+				<tr class="admin_listcontent_mean">
+					<td>编号</td><td>车主姓名</td><td>车牌</td><td>车位号</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>操作</td>
+				</tr>
+			</table>
+			<!--分页-->
+			<div class="tcdPageCode"></div>
+			<script src="js/jquery.page.js"></script>
+		</div>
+	</body>
+</html>

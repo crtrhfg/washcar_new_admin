@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+
+		<script type="text/javascript" src="js/huifangjilu_message.js"></script>
+	</head>
+	<body>
+        <div class="huifangjilu_message_content">
+       		<div class="carpep_xinxi_top">  </div>
+       		<div class="carpep_xinxi_bodytab">
+       			<table>
+       				<tr class="huifangjilu_messagetb">
+						<td>回访时间</td>
+						<td>服务态度</td>
+						<td>洗车质量</td>
+						<td>是否推荐</td>
+						<td>回访内容</td>
+						<td>客服</td>
+					</tr>
+					<!-- <tr>
+						<td>2016-3-26</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>用户不方便接听电话</td>
+						<td>张兰</td>
+					</tr>
+					<tr>
+						<td>2016-3-26</td>
+						<td>好</td>
+						<td>一般</td>
+						<td>否</td>
+						<td>效率高,该洗的地方都处理了,洗的可以</td>
+						<td>李四</td>
+					</tr> -->
+       			</table>
+       		</div>
+		</div>
+	</body>
+</html>

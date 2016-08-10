@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type='text/javascript' src='js/cookie.js'></script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="header_left"><a href="shouye.html" target="index"><img src="img/header_left.png" ></a></div>
+			<div class="header_rigt">
+				<ul>
+					<li class="header_rigt_img"><a href="javascript:;">
+						<img src="img/admin.png" width="50px" height="50px" border="0"></a>
+					</li>
+					<li class="header_rigt_admin"><font color="black">暴走大事件</font>
+						<span style="padding: 10px;font-family: -webkit-body;">|</span>
+					</li>
+					<li class="header_rigt_password"><a href="password_manage.html" target="index">修改密码</a></li>
+					<li class="header_rigt_out"><a href="javascript:;">退出</a></li>
+				</ul>
+			</div>		
+		</div>
+	</body>
+	<script>	
+		$(function(){
+			$('.header_rigt_out').bind('click',function(){
+				$.ajax({
+					url:'http://www.nbinbi.com/waterObj/index.php/Admin/Indvdio/logout',
+					dataType:'jsonp',
+					success:function(data){
+						console.log(data)
+						data.status==1&&($.cookie("name","请登录",-1),window.parent.location.href='login.html')
+					}
+				})
+			console.log(1)
+			})
+			$(".header_rigt_admin").find("font").text(($.cookie("name")));
+		})
+	</script>
+</html>

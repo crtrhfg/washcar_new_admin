@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js"></script>
+		<script type="text/javascript" src="js/yanzheng.js" ></script>
+		<script type="text/javascript" src="js/role_list.js"></script>
+	</head>
+	<body>		
+		<div id="add_role">
+            <div class="add_role_div">
+                <div class="add_role_div_div">
+                   <span>角色名称:</span>&nbsp;&nbsp;<input type="text" id="role_name" placeholder="请输入英文的角色名称"/><br/><br/>
+                    <span>角色描述:</span>&nbsp;&nbsp;<input type="text" id="role_des" placeholder="请输入中文的角色描述"/>
+                    <p id="opreation"><span>是否开启:</span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex"/><span>开启</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex"/><span>暂停</span></p>
+                    <button class="save" onclick="save_roles()">保存</button>
+                    <!--  <button id="add">增加</button>-->
+                    <button class="add_role_button">增加</button>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+	</head>
+	<body>
+		<div class="menuTitle">                	
+            <div class="search">
+            	<input type="text" placeholder="关键字" class="huifangjilu_text"/>
+                <input type="button" value="查询" class="huifangjilu_chaxun" />
+            </div>
+        </div>
+		<div class="admin_listcontent">
+			<table class="huifang_table">
+				<tr>
+					<td>编号</td><td>时间</td><td>车主姓名</td><td>电话</td><td>车牌</td><td>客户</td><td>操作</td>
+				</tr>					
+			</table>
+			<div class="tcdPageCode"></div>
+			<script src="js/jquery.page.js"></script>
+			<script type="text/javascript">
+			fullAdminList(1,function (count){
+				$(".tcdPageCode").createPage({
+			      pageCount:count,
+			      current:1,
+			      backFn:function(p){
+			      	fullAdminList(p)
+			      }
+				});
+			});
+			function fullAdminList(page,fn){
+				!page&&(page=1);
+				$.ajax({
+					url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnVisitList",
+					dataType:"jsonp",
+					data:{"page":page},
+					success:function(data){
+						console.log(data)
+						if(data.status = 1){
+							var count =Math.ceil(data.len/14);
+							var str="";
+							var strhead=""; //固定头部文字
+							for(var i=0,len=data.data.length;i<len;i++){										
+								str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].optime+'</td><td>'+data.data[i].username+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].carnum+'</td><td>'+data.data[i].wname+'</td><td class="huifangmessage"><a href="huifangjilu_message.html?vsid='+data.data[i].vsid+'">查看详情</a></td></tr>';
+								strhead='<tr><td>编号</td><td>时间</td><td>车主姓名</td><td>电话</td><td>车牌</td><td>客户</td><td>操作</td></tr>';
+							
+							//查询功能
+								$(".huifangjilu_chaxun").bind('click',function(){
+									!page&&(page=1);
+									var keyword =$('.huifangjilu_text').val();
+									$.ajax({
+										url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/searchVisitByKeyword",
+										type:"get",                                        
+										dataType:"jsonp", 
+										data:{"keyword":keyword},
+										success:function(data){  
+											console.log(data)				
+											if(data.status = 1){
+												var count =Math.ceil(data.len/14);
+												var str="";
+												var strhead=""; //固定头部文字
+												for(var i=0,len=data.data.length;i<len;i++){
+													str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].optime+'</td><td>'+data.data[i].username+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].carnum+'</td><td>'+data.data[i].wname+'</td><td class="xiangqing_color"><a href="huifangjilu_message.html?vsid='+data.data[i].vsid+'">查看详情</a></td></tr>';
+													strhead='<tr><td>编号</td><td>时间</td><td>车主姓名</td><td>电话</td><td>车牌</td><td>客户</td><td>操作</td></tr>';
+												}
+												$(".huifang_table").html(strhead+str);
+												fn&&fn(count);
+											// console.log(data.data[0].uid);
+											}
+										}
+									})
+								});										
+							}	
+							$(".huifang_table").html(strhead+str);
+								fn&&fn(count);
+						}
+					}
+				})
+			}
+			</script>
+			</div>
+		</div>	
+	</body>
+</html>

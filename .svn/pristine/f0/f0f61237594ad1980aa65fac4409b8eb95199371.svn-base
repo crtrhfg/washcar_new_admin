@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+
+		<script type="text/javascript" src="js/missadmin_message_tiyan.js"></script>
+	</head>
+	<body>		
+		<div class="admin_addcontent_box">
+			<ul class="missadmin_message_adminmes">
+				<li>车主姓名: 张先生</li>
+				<li class="admin_listcontent_xinxi">手机号: 1396546313</li>				
+			</ul>
+			<div class="admin_listcontent_xinxita">
+				<table class="missadmin_message_adminmtb">
+					<!--<tr class="admin_listcontent_xinxitabiaoti"><td colspan="8">清洗清单</td></tr>							
+					<tr class="admin_listcontent_xinxitaneirong " >
+						<td>时间</td><td>负责人</td><td>清洗人员</td><td>清洗车辆</td><td>车位号</td><td>服务项目</td><td>次数</td><td>费用</td>
+					</tr>					
+					<tr class="admin_listcontent_xinxitaneirong " >
+						<td>2016-4-15</td><td>唐琳琳</td><td>旺旺、小二</td><td>川A3B2508</td><td>2-001</td><td>普洗</td><td>1</td><td>包月-小车68套餐</td>
+					</tr>
+					<tr class="admin_listcontent_xinxitabiaoti admin_listcontent_tongji"><td colspan="8">总费用合计 = 188（元）  其中:包月-小车68套餐=68（元）  普洗 = 10（元） 精洗 = 10（元）手工打蜡 = 20（元）</td></tr>
+					<tr class="admin_listcontent_xinxitabiaoti admin_listcontent_tongji"><td colspan="8">2016-4-20 备注:</td></tr>-->
+				</table>
+			</div>
+		</div>	
+	</body>
+</html>

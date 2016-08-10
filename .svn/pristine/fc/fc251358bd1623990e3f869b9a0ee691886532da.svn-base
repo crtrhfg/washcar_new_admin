@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>		
+	</head>
+		<frameset rows="8%,*" border="0px"> 
+			<frame src="head.html" noresize="noresize" style="background-image: url(img/headbackground.png);overflow-x:hidden ;">		
+			<frameset border="1px">
+				<frame src="content.html" noresize="noresize">					
+			</frameset>		
+		</frameset>
+</html>

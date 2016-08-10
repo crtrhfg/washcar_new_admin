@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/missadmin.js" ></script>
+	</head>
+	<body>		
+    	<div class="menuTitle">
+        	<ul>
+            	<li><select class="city_numO" onchange="sheng(this.value)">
+				    	<option>请选择省份</option>
+				    </select>
+            	</li>
+            	<li><select class="city_numT" onchange="cheng(this.value)">
+						<option>请选择城市</option>
+					</select>
+            	</li>
+            	<li><select class="city_numF" onchange="aheng(this.value)">
+						<option>请选择城市</option>
+					</select>	
+            	</li>
+				<li><select class="city_numS">
+						<option>请选择楼盘</option>
+					</select>
+				</li>
+            </ul>
+            <div class="search">
+            	<input type="text" placeholder="关键字" class="guanjianzi_chaxun"/>
+                <input type="button" value="查询" class="guanjianzi_chaxun_but"/>
+            </div>
+        </div>
+		<div class="missadmin_table">
+			<div class="dancitaocan_button">
+            	<button class="missadmin_qiehuan" web="1">失效用户</button>
+                <button web="2" >单次用户</button>
+                <button web="3" >体验用户</button>
+            </div> 
+			<table class="missadmin_content">
+				<tr>
+					<td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>车牌号</td><td>车位</td><td>用户类型</td><td>操作</td>
+				</tr>									
+			</table>
+			<div class="tcdPageCode"></div>
+			<script src="js/jquery.page.js"></script>
+		</div>		
+	</body>
+</html>

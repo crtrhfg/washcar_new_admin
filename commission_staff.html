@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js"></script>
+		<script type="text/javascript" src="js/commission_staff.js" ></script>
+		<script>
+			$(function(){
+				$(".delet").click(function(dw){
+                    var str='<div class="alert" style="display:block;"><h3>提示</h3>'+
+                        '<p>是否<strong>删除数据</strong>?</p>'+
+                        '<button class="sure">确定</button><button class="cancel">取消</button>'+
+                        '</div>';
+                    $(".admin_listcontent").append(str);
+					$(".cancel").click(function(ev){
+						$(".alert").remove();
+						ev.stopPropagation();
+					});
+					dw.stopPropagation();
+                });
+			});
+		</script>
+	</head>
+	<body>
+		<div class="commission_top">
+			<div style="float:left;width:40%;padding:0 2%;">
+				<input type="date" style="background-color:white;border:1px solid #DEDEDE;color:black;"/>——
+				<input type="date" style="background-color:white;border:1px solid #DEDEDE;color:black;"/>
+			</div>
+        </div>
+		<div class="admin_listcontent">
+			<table class="admin_list_list">
+				<!-- <tr>
+					<td>编号</td>
+					<td>职位</td>
+					<td>姓名</td>
+					<td>新开</td>
+					<td>续费</td>
+					<td>提成</td>
+					<td>操作</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>销售</td>
+					<td>旺财</td>
+					<td>1</td>
+					<td>3</td>
+					<td>￥10.50</td>
+					<td>
+						<div class="staff_botton">
+							<button class="delet">删除</button>
+						</div>
+					</td>
+				</tr> -->
+			</table>
+			<div class="tcdPageCode"></div>
+		</div>
+	</body>
+</html>

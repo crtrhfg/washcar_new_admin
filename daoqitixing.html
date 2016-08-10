@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+
+		<script type="text/javascript" src="js/daoqitixing.js" ></script>
+	</head>
+	<body>
+		<div class="menuTitle">
+        	<ul>
+            	<li><select class="city_numO" onchange="sheng(this.value)">
+				    	<option>请选择省份</option>
+				    </select>
+            	</li>
+            	<li><select class="city_numT" onchange="cheng(this.value)">
+						<option>请选择城市</option>
+					</select>
+            	</li>
+            	<li><select class="city_numF" onchange="aheng(this.value)">
+						<option>请选择城市</option>
+					</select>	
+            	</li>
+				<li><select class="city_numS" onchange="hheng()">
+						<option>请选择楼盘</option>
+					</select>
+				</li>
+            </ul>
+            <div class="search">
+            	<input type="text" placeholder="关键字" class="guanjianzi_chaxun"/>
+                <input type="button" value="查询" class="guanjianzi_chaxun_but"/>
+            </div>         
+        </div>
+		<div class="admin_listcontent">
+			<table class="daoqitixing_table">
+				<tr class="admin_listcontent_mean">
+					<td>序号</td><td>车主姓名</td><td>车位</td><td>联系方式</td><td>楼盘</td><td>车型</td><td>车牌</td><td>套餐</td><td>剩余次数</td><td>开始时间</td><td>到期时间</td><td style="min-width:110px;">操作</td>
+				</tr>
+			</table>
+			<div class="tcdPageCode"></div>
+			<script src="js/jquery.page.js"></script>
+			<script type="text/javascript">
+			fullAdminList(1,function (count){
+				$(".tcdPageCode").createPage({
+			      pageCount:count,
+			      current:1,
+			      backFn:function(p){
+			      	fullAdminList(p)
+			      }
+				});
+			});
+			function fullAdminList(page,fn){
+				!page&&(page=1);
+				$.ajax({
+					url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/expiring",
+					dataType:"jsonp",
+					data:{"page":page},
+					success:function(data){
+						console.log(data);
+						if(data.status = 1){
+							var count =Math.ceil(data.len/14);
+							var str="";
+							var strhead=""; //固定头部文字
+							for(var i=0,leng=data.data.length;i<leng;i++){					
+								str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+
+									data.data[i].username+'</td><td>'+data.data[i].park+'</td><td>'+data.data[i].phonenum+
+									'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].ctype+'</td><td>'+
+									data.data[i].carnum+'</td><td>'+data.data[i].ratename+'</td><td>'+data.data[i].outnum+
+									'</td><td>'+data.data[i].startdate+'</td><td>'+data.data[i].enddate+
+									'</td><td><div class="huifangdinggou_button"><a href="daoqitixing_huifangagain.html?omid='+data.data[i].omid+'"><button>回访</button></a>	<a href="admin_add.html?omid='+data.data[i].omid+'"><button class="huifangdinggou_button_right">订购</button></a></div></td></tr>';
+
+								strhead='<tr class="admin_listcontent_mean"><td>序号</td><td>车主姓名</td><td>车位</td><td>联系方式</td><td>楼盘</td><td>车型</td><td>车牌</td><td>套餐</td><td>剩余次数</td><td>开始时间</td><td>到期时间</td><td style="min-width:110px;">操作</td></tr>';
+							}
+							$(".daoqitixing_table").html(strhead+str);
+							fn&&fn(count);
+						}
+						$("tr:even").css("background-color","#F2F2F3");
+					}
+				});
+			}
+			//查询功能
+			$(".guanjianzi_chaxun_but").bind('click',function(){
+				fullAdminListd(1,function (count){
+					$(".tcdPageCode").createPage({
+				      pageCount:count,
+				      current:1,
+				      backFn:function(p){
+				      	fullAdminListd(p)
+				      }
+					});
+				});
+				function fullAdminListd(page,fn){
+					!page&&(page=1);
+					var keyword =$('.guanjianzi_chaxun').val();
+					$.ajax({
+						url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/selectKeyword",
+						type:"get",                                        
+						dataType:"jsonp", 
+						data:{"keyword":keyword},
+						success:function(data){  
+							if(data.status == 1){
+								var count =Math.ceil(data.len/14);
+								var str="";
+								var strhead=""; //固定头部文字
+								for(var i=0,leng=data.data.length;i<leng;i++){					
+									str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+
+										data.data[i].username+'</td><td>'+data.data[i].park+'</td><td>'+data.data[i].phonenum+
+										'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].ctype+'</td><td>'+
+										data.data[i].carnum+'</td><td>'+data.data[i].ratename+'</td><td>'+data.data[i].outnum+
+										'</td><td>'+data.data[i].startdate+'</td><td>'+data.data[i].enddate+
+										'</td><td><div class="huifangdinggou_button"><a href="daoqitixing_huifangagain.html?uid='+data.data[i].uid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button class="huifangdinggou_button_right">订购</button></a></div></td></tr>';
+	
+									strhead='<tr class="admin_listcontent_mean"><td>序号</td><td>车主姓名</td><td>车位</td><td>联系方式</td><td>楼盘</td><td>车型</td><td>车牌</td><td>套餐</td><td>剩余次数</td><td>开始时间</td><td>到期时间</td><td style="min-width:110px;">操作</td></tr>';
+								}
+								$(".daoqitixing_table").html(strhead+str);
+								fn&&fn(count);
+							}else{
+								alert(data.msg);
+							}
+							$("tr:even").css("background-color","#F2F2F3");
+						}
+					});
+				}
+			});		
+			</script>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+$(function(){
+	var omid  = getUrlParam('omid');
+	var innum,outnum;
+	var indate,outdate;
+	$.ajax({
+		url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/returnMakeDate",
+		dataType:"jsonp",
+		type:"get",
+		data:{"omid":omid},
+		success:function(data){	
+			indate=data.data["trimdate"].split(",");
+			outdate=data.data["extdate"].split(",");
+			innum=data.data.innum;
+			outnum=data.data.outnum;
+			$(".chinnum").text(innum);
+			$(".choutnum").text(outnum);
+			//内饰日期
+			zzxl_calendar({
+				box:"box",
+				defaultOneDayClick:false,
+				onload:function (){
+					console.log(indate);
+					var nowdate=$("#box").find("p").eq(0).html().replace(/<\/\w+\s?.*?>|<\w+.*?>|&lt;|&gt;/g,'').replace(/\//g,'-')+"-";
+					$("#box").find("li").each(function (index,item){
+						for(var i=0,len=indate.length;i<len;i++){
+							if(indate[i]==nowdate+item.innerHTML){
+								item.className="hover";
+							}
+						}
+					});
+				},
+				callback:function (){
+					if(this.className=='prevNextMonth'||this.classname)return;
+					var yeers=$('#box p:eq(0)').text().match(/\d+\/\d+/)[0];
+					if(this.className==''){
+						if(trimDate.length<innum){
+							trimDate.push(yeers+"/"+$(this).text());
+							this.className='hover';
+						}
+						console.log(trimDate)
+					}else{
+						var index=-1;
+						this.className=''
+						rm(trimDate,yeers+'/'+$(this).text());
+						console.log(trimDate)
+					}
+		
+				}
+			});	
+			//外饰日期
+			zzxl_calendar({												//获取多次点击的值
+				box:"box2",	
+				onload:function (){
+					console.log(outdate);
+				},
+				callback:function (){
+					if(this.className=='prevNextMonth'||this.classname)return;
+						var yeers=$('#box2 p:eq(0)').text().match(/\d+\/\d+/)[0];
+						if(this.className==''){
+							if(extDate.length<outnum){
+								extDate.push(yeers+"/"+$(this).text());
+								this.className='hover';
+							}
+							console.log(extDate)
+						}else{
+							var index=-1;
+							this.className=''
+							rm(extDate,yeers+'/'+$(this).text());
+							console.log(extDate)
+						}
+				}
+			});
+		}
+	})
+	//日历公用方法
+	function rm(arr,value){
+		var index;
+		$.each(arr, function(index1,val) {
+			val==value&&(index=index1)
+		});
+		arr.splice(index,1);
+	}
+	var trimDate=[];	//内饰清洗时间
+	var extDate=[];		//外饰清洗时间
+	var dd = new Date(); 
+	var	m=(dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);//获得月份 
+	var	y=dd.getFullYear(); //获取年(四位)
+	
+	$("#box").click(function(){
+		if(trimDate!=""){
+			$(".onecetime_chosebtbg").attr("value",trimDate);
+		}
+	});
+	$("#box2").click(function(){
+		if(extDate!=""){
+			$(".onecetime_chosebten").attr("value",extDate);
+		}
+	});	
+	$(".changeyuyuetime").click(function(){
+		$.ajax({
+			url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/saveMakeDate",
+			dataType:"jsonp",
+			type:"get",
+			data:{"omid":omid,"trimDate":trimDate,"extDate":extDate},
+			success:function(data){	
+				console.log(data)
+			}
+		})
+	});
+	
+	
+	
+	function getUrlParam(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+})	

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		
+		<script type="text/javascript" src="js/missadmin.js" ></script>
+	</head>
+	<body>		
+    	<div class="menuTitle">
+        	<ul>
+            	<li><select class="city_numO" onchange="sheng(this.value)">
+				    	<option>请选择省份</option>
+				    </select>
+            	</li>
+            	<li><select class="city_numT" onchange="cheng(this.value)">
+						<option>请选择城市</option>
+					</select>
+            	</li>
+            	<li><select class="city_numF" onchange="aheng(this.value)">
+						<option>请选择城市</option>
+					</select>	
+            	</li>
+				<li><select class="city_numS" onchange="hheng()">
+						<option>请选择楼盘</option>
+					</select>
+				</li>
+            </ul>
+            <div class="search">
+            	<input type="text" placeholder="关键字" class="guanjianzi_chaxun"/>
+                <input type="button" value="查询" class="guanjianzi_chaxun_but"/>
+            </div>
+        </div>
+		<div class="missadmin_table">
+			<div class="dancitaocan_button">
+            	<button class="missadmin_qiehuan" web="1">失效用户</button>
+                <button web="2" >单次用户</button>
+                <button web="3" >体验用户</button>
+            </div> 
+			<table class="missadmin_content">
+				<tr>
+					<td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td>
+				</tr>									
+			</table>
+			<div class="tcdPageCode"></div>
+			<script src="js/jquery.page.js"></script>
+		</div>		
+	</body>
+	<script type="text/javascript">
+		$(function(){
+		//默认初始加载******************************************************************************************************************************
+			fullAdminList(1,function (count){
+				$(".tcdPageCode").createPage({
+			      pageCount:count,
+			      current:1,
+			      backFn:function(p){
+			      	fullAdminList(p)
+			      }
+				});
+			});
+			function fullAdminList(page,fn){
+				!page&&(page=1);
+				$.ajax({
+					url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/reUser",
+					dataType:"jsonp",
+					data:{"page":page},
+					success:function(data){
+						console.log(data)
+						if(data.status ==1){
+						    len =Math.ceil(data.len/14);				
+						 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+						 	var strhead=""; //固定头部文字
+						 	for(var i=0,leng=data.data.length;i<leng;i++){
+						 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+
+						 		data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">套餐用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+						 	
+						 	$(".missadmin_content").html(str);
+						 	fn&&fn(len);
+							}							
+						}else{
+							len =Math.ceil(data.len/14);
+						 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+						 	for(var i=0,leng=data.data.length;i<leng;i++){
+						 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+						 	}
+						 	$(".missadmin_content").html(str);
+						 	fn&&fn(len);
+						 	alert(data.msg);
+						}	
+					}
+				});
+			}
+			//默认套餐用户查询功能
+			$(".guanjianzi_chaxun_but").bind('click',function(){	
+				var keyword =$(".guanjianzi_chaxun").val();		
+				fullAdminListd(1,function (count){
+					$(".tcdPageCode").createPage({
+				      pageCount:count,
+				      current:1,
+				      backFn:function(p){
+				      	fullAdminListd(p)
+				      }
+					});
+				});
+				function fullAdminListd(page,fn){
+					!page&&(page=1);
+					$.ajax({
+						url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/keywordUser",
+						type:"get",                                        
+						dataType:"jsonp", 
+						data:{"keyword":keyword},
+						success:function(data){  
+							console.log(data)				
+							if(data.status ==1){
+							    len =Math.ceil(data.len/14);				
+							 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+							 	var strhead=""; //固定头部文字
+							 	for(var i=0,leng=data.data.length;i<leng;i++){
+							 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+
+							 		data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">套餐用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+							 	
+							 	$(".missadmin_content").html(str);
+							 	fn&&fn(len);
+								}	
+							}else{
+								len =Math.ceil(data.len/14);
+							 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+							 	for(var i=0,leng=data.data.length;i<leng;i++){
+							 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+							 	}
+							 	$(".missadmin_content").html(str);
+							 	fn&&fn(len);
+							 	alert(data.msg);
+							}	
+						}
+					}); 
+				}
+	 		}); 
+	 	//切换按钮***************************************************************************************************************************************************************
+			$(".dancitaocan_button>button").bind('click',function(){
+				var web=$(this).attr('web');
+				$(this).addClass('missadmin_qiehuan').siblings().removeClass('missadmin_qiehuan');				
+				if(web==1){
+					//点击套餐用户加载列表************************************************************************************************************************
+					fullAdminListz(1,function (count){
+						$(".tcdPageCode").createPage({
+					      pageCount:count,
+					      current:1,
+					      backFn:function(p){
+					      	fullAdminListz(p)
+					      }
+						});
+					});
+					function fullAdminListz(page,fn){
+						!page&&(page=1);
+						$.ajax({
+							url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/reUser",
+							dataType:"jsonp",
+							data:{"page":page},
+							success:function(data){
+								console.log(data)
+								if(data.status ==1){
+								    len =Math.ceil(data.len/14);				
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	var strhead=""; //固定头部文字
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+
+								 		data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">套餐用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+								 	
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+									}							
+								}else{
+									len =Math.ceil(data.len/14);
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+								 	}
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+								 	alert(data.msg);
+								}	
+							}
+						});
+					}
+					//套餐用户查询功能
+					$(".guanjianzi_chaxun_but").bind('click',function(){	
+						var keyword =$(".guanjianzi_chaxun").val();		
+						fullAdminListt(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminListt(p)
+						      }
+							});
+						});
+						function fullAdminListt(page,fn){
+							!page&&(page=1);
+							$.ajax({
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/keywordUser",
+								type:"get",                                        
+								dataType:"jsonp", 
+								data:{"keyword":keyword},
+								success:function(data){  
+									console.log(data)				
+									if(data.status ==1){
+									    len =Math.ceil(data.len/14);				
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	var strhead=""; //固定头部文字
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+
+									 		data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">套餐用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+									 	
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+										}	
+									}else{
+										len =Math.ceil(data.len/14);
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}	
+								}
+							}); 
+						}
+			 		}); 
+			 	//三级联动*********************************************************************************************************************************
+				 	if(vid!=null){
+				 		fullAdminLists(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminLists(p)
+						      }
+							});
+						});
+						function fullAdminLists(page,fn){
+					 		$.ajax({
+								type:"get",
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/selOrdermonthList",
+								dataType:"jsonp", 
+								data:{"vid":vid,"page":page},
+								success:function(data){  
+									 console.log(data);
+									if(data.status == 1){
+									    len =Math.ceil(data.len/14);				
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	var strhead=""; //固定头部文字
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">套餐用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html"><button>回访</button></a><a href="admin_add.html"><button>续费</button></a><a href="missadmin_message.html?uid='+data.data[i].uid+'"><button class="missmessage">查看详情</button></a></div></td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									}else{
+										len =Math.ceil(data.len/14);
+										$(".missadmin_content").html('<tr><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td>	</tr>');
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}
+								}
+							});	
+						}
+				 	}
+				}else if(web==2){
+					//点击体验用户加载列表************************************************************************************************************************
+					fullAdminListc(1,function (count){
+						$(".tcdPageCode").createPage({
+					      pageCount:count,
+					      current:1,
+					      backFn:function(p){
+					      	fullAdminListc(p)
+					      }
+						});
+					});
+					function fullAdminListc(page,fn){
+						!page&&(page=1);
+						$.ajax({
+							url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/selLoseSingle",
+							dataType:"jsonp",
+							data:{"page":page},
+							success:function(data){
+								console.log(data)
+								if(data.status ==1){
+								   len =Math.ceil(data.len/14);
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">单次用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_tiyan.html?sid='+data.data[i].sid+'"><button>查看详情</button></a></div></td></tr>';
+								 	}
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+								}else{
+									len =Math.ceil(data.len/14);
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+								 	}
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+								 	alert(data.msg);
+								}								
+							}
+						});
+					}
+					//体验用户查询功能
+					$(".guanjianzi_chaxun_but").bind('click',function(){	
+						var keyword =$(".guanjianzi_chaxun").val();		
+						fullAdminListv(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminListv(p)
+						      }
+							});
+						});
+						function fullAdminListv(page,fn){
+							!page&&(page=1);
+							$.ajax({
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/selLoseKeywordSingleList",
+								type:"get",                                        
+								dataType:"jsonp", 
+								data:{"keyword":keyword},
+								success:function(data){  
+									console.log(data)				
+									if(data.status ==1){
+									    len =Math.ceil(data.len/14);				
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	var strhead=""; //固定头部文字
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">单次用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									}else{
+										len =Math.ceil(data.len/14);
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}	
+								}
+							}); 
+						}
+			 		}); 
+			 		if(vid!=null){
+				 		fullAdminListb(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminListb(p)
+						      }
+							});
+						});
+						function fullAdminListb(page,fn){
+					 		$.ajax({
+								type:"get",
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/selLoseVillageSingleList",
+								dataType:"jsonp", 
+								data:{"vid":vid,"page":page},
+								success:function(data){  
+									 console.log(data);
+									if(data.status == 1){
+									    len =Math.ceil(data.len/14);				
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	var strhead=""; //固定头部文字
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">单次用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html"><button>回访</button></a><a href="admin_add.html"><button>续费</button></a><a href="missadmin_message.html?uid='+data.data[i].uid+'"><button class="missmessage">查看详情</button></a></div></td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									}else{
+										len =Math.ceil(data.len/14);
+										$(".missadmin_content").html('<tr><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td>	</tr>');
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}
+								}
+							});	
+						}
+				 	}
+				}else if(web==3){
+
+					//点击体验用户加载列表************************************************************************************************************************
+					fullAdminListh(1,function (count){
+						$(".tcdPageCode").createPage({
+					      pageCount:count,
+					      current:1,
+					      backFn:function(p){
+					      	fullAdminListh(p)
+					      }
+						});
+					});
+					function fullAdminListh(page,fn){
+						!page&&(page=1);
+						$.ajax({
+							url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/reSupmess",
+							dataType:"jsonp",
+							data:{"page":page},
+							success:function(data){
+								console.log(data)
+								if(data.status ==1){
+								   len =Math.ceil(data.len/14);
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phone+'</td><td>'+data.data[i].cartype+'</td><td class="trymiss_qiehuan">体验用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_tiyan.html?sid='+data.data[i].sid+'"><button>查看详情</button></a></div></td></tr>';
+								 	}
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+								}else{
+									len =Math.ceil(data.len/14);
+								 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+								 	for(var i=0,leng=data.data.length;i<leng;i++){
+								 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+								 	}
+								 	$(".missadmin_content").html(str);
+								 	fn&&fn(len);
+								 	alert(data.msg);
+								}								
+							}
+						});
+					}
+					//体验用户查询功能
+					$(".guanjianzi_chaxun_but").bind('click',function(){	
+						var keyword =$(".guanjianzi_chaxun").val();		
+						fullAdminListu(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminListu(p)
+						      }
+							});
+						});
+						function fullAdminListu(page,fn){
+							!page&&(page=1);
+							$.ajax({
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/keywordSup",
+								type:"get",                                        
+								dataType:"jsonp", 
+								data:{"keyword":keyword},
+								success:function(data){  
+									console.log(data)				
+									if(data.status ==1){
+									    len =Math.ceil(data.len/14);				
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	var strhead=""; //固定头部文字
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phonenum+'</td><td>'+data.data[i].ctype+'</td><td class="trymiss_qiehuan">体验用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html?omid='+data.data[i].omid+'"><button>回访</button></a><a href="admin_add.html?omid='+data.data[i].omid+'"><button>续费</button></a><a href="missadmin_message_miss.html?uid='+data.data[i].uid+'"><button>查看详情</button></a></div></td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									}else{
+										len =Math.ceil(data.len/14);
+									 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+									 	for(var i=0,leng=data.data.length;i<leng;i++){
+									 		str+='<tr><td>/</td><td>/</td><td>/</td><td>/</td><td>/</td><td class="trymiss_qiehuan">/</td><td>/</td></tr>';
+									 	}
+									 	$(".missadmin_content").html(str);
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}	
+								}
+							}); 
+						}
+			 		}); 
+			 		if(vid!=null){
+				 		fullAdminListi(1,function (count){
+							$(".tcdPageCode").createPage({
+						      pageCount:count,
+						      current:1,
+						      backFn:function(p){
+						      	fullAdminListi(p)
+						      }
+							});
+						});
+						function fullAdminListi(page,fn){
+					 		$.ajax({
+								type:"get",
+								url:"http://www.nbinbi.com/waterObj/index.php/Admin/Order/selSupmessList",
+								dataType:"jsonp", 
+								data:{"vid":vid,"page":page},
+								success:function(data){  
+									 console.log(data);
+									 var cartype;
+									if(data.status == 1){
+										if(cartype!=""){
+											len =Math.ceil(data.len/14);				
+										 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+										 	var strhead=""; //固定头部文字
+										 	for(var i=0,leng=data.data.length;i<leng;i++){
+										 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phone+'</td><td>'+data.data[i].cartype+'</td><td class="trymiss_qiehuan">体验用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html"><button>回访</button></a><a href="admin_add.html"><button>续费</button></a><a href="missadmin_message.html?uid='+data.data[i].uid+'"><button class="missmessage">查看详情</button></a></div></td></tr>';
+										 		cartype=data.data[i].cartype;
+										 	}
+										 	$(".missadmin_content").html(str);
+										 	fn&&fn(len);
+										}else{
+											len =Math.ceil(data.len/14);				
+										 	var str='<tr class="admin_listcontent_mean"><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td></tr>';
+										 	var strhead=""; //固定头部文字
+										 	for(var i=0,leng=data.data.length;i<leng;i++){
+										 		str+='<tr><td>'+((page-1)*14+i+1)+'</td><td>'+data.data[i].name+'</td><td>'+data.data[i].building+'</td><td>'+data.data[i].phone+'</td><td></td><td class="trymiss_qiehuan">体验用户</td><td><div class="missadmin_botton"><a href="missadmin_huifang.html"><button>回访</button></a><a href="admin_add.html"><button>续费</button></a><a href="missadmin_message.html?uid='+data.data[i].uid+'"><button class="missmessage">查看详情</button></a></div></td></tr>';
+										 		cartype=data.data[i].cartype;
+										 	}
+										 	$(".missadmin_content").html(str);
+										 	fn&&fn(len);
+										}									   
+									}else{
+										len =Math.ceil(data.len/14);
+										$(".missadmin_content").html('<tr><td>编号</td><td>车主姓名</td><td>楼盘</td><td>联系方式</td><td>车型</td><td>用户类型</td><td>操作</td>	</tr>');
+									 	fn&&fn(len);
+									 	alert(data.msg);
+									}
+								}
+							});	
+						}
+				 	}
+				}
+			});
+		})
+	</script>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+	</head>
+	<body>
+    	<div class="oneMenu">   				
+        	<ul class="list listter">
+<!--            	<a href="taocanlist_addxiangmu.html" target="index"><li>增加套餐</li></a>   
+            	<a href="javascript:," ><li class="removeMore">批量删除</li></a>
+-->         </ul>
+            <div class="oneMenuTab">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>服务项目</td>
+                            <td>服务介绍</td>
+                            <td>金额</td>
+                            <td>车型</td>
+                            <td width="17%">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                  	</tbody>
+                </table>
+                <div class="tcdPageCode"></div>
+            </div>
+       
+        <!--<div class="alertOne" style="width:200px; height:200px; background:#9FF; position:absolute; top:300px; left:300px; display:none;">
+        	<a class="sure" href="#">确定</a><a class="cancel" href="#">取消</a>
+        </div>-->
+        <div class="mainMenualert del alertOne"><p><img src="./img/warn.png"/><span>是否删除该管理</span></p>
+            <button class="confirm sure">确定</button>
+            <button class="cancel">取消</button>
+        </div>
+        <script type="text/javascript" src="js/jquery.page.js"></script>
+        <script type="text/javascript">
+				var arrFlag1=[];
+				fullAdminList(1,function (count){
+					$(".tcdPageCode").createPage({
+					  pageCount:count,
+					  current:1,
+					  backFn:function(p){
+						fullAdminList(p)
+					  }
+					});
+				});					
+				function fullAdminList(page,fn){
+					!page&&(page=1);
+					$.ajax({
+						url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/returnRateSingleList",
+						dataType:"jsonp",
+						data:{"page":page},
+						success:function(data){
+							console.log(data);
+							if(data.status = 1){
+								var count =Math.ceil(data.len/14);
+								var bodyString="";
+								var str="";   //**************
+								str+="<li class='taocanlist_addxiangmu'>增加单次服务</li><li class='removeMore'>批量删除</li>"//**************
+								$.each(data.data,function(index,val){
+									console.log(data.data);
+									bodyString+="<tr>"+
+													"<td class='singlemove'><input rsid="+val.rsid+" style='display:none' class='s2' type='checkbox' name='ids' />"+val.singlename+"</td>"+
+													"<td>"+val.rsdesc+"</td>"+
+													"<td>"+val.sprice+"</td>"+
+													"<td>"+val.cartype+"</td>"+
+													"<td><div class='huifangdinggou_button'><button  class='removeOne' rsid="+val.rsid+">删除</button><button class='taocanlist_changxiangmu' rsid="+val.rsid+">修改</button></div>"+
+													"</td>"+
+													"</tr>"
+									
+								})								
+								$('.oneMenu .list').html(str);//**************
+								$('.oneMenuTab').find('tbody').html(bodyString);
+								fn&&fn(count);
+							}				
+							$(".taocanlist_addxiangmu").click(function(){
+								window.location.href="taocanlist_addxiangmu.html";
+							});			
+							/*修改套餐*/
+							$('.taocanlist_changxiangmu').click(function(){
+								var rsid=$(this).attr('rsid');	
+								location.href="taocanlist_changxiangmu.html?rsid="+rsid;
+							});	
+							/*单个删除*/
+							$('.removeOne').click(function(){
+								var This=$(this);
+								$('.alertOne').show();
+								$('.alertOne .sure').unbind("click");
+								$('.alertOne .sure').bind("click",function (){
+									//This.parent().parent().parent().remove();
+									$('.alertOne').hide();
+									var arrFlag1=[];
+									arrFlag1.push(This.attr('rsid'));
+									console.log("["+arrFlag1.toString()+"]");
+									ajax1("http://www.nbinbi.com/waterObj/index.php/Admin/Complex/deleteRateSingleById","["+arrFlag1.toString()+"]",page)
+									
+								});																						
+								$('.mainMenualert .cancel').bind("click",function(){
+									$('.mainMenualert').hide();	
+								});								
+							});							
+							/*批量删除*/
+							$('.removeMore').click(function(){
+								if($('.singlemove input:eq(0)').css('display')=='none'){
+									$('.singlemove input').show();
+								}else{
+									var checkedNum=$('input:checkbox[name=ids]:checked').length;
+									if(checkedNum == 0){
+										alert("请选择至少一项！"); 
+										return; 
+									}
+									$('.mainMenualert').show();
+									$('.mainMenualert .sure').unbind("click");	
+									$('.mainMenualert .sure').bind("click",function(){
+										$('.mainMenualert').css('display','none');
+										var ids = $('input:checkbox[name=ids]:checked');
+										ids.each(function(i){
+											//console.log($(this).attr('flog'));
+											$(this).parent().parent().remove();
+											arrFlag1.push($(this).attr('rsid'));													
+										});
+										console.log("["+arrFlag1.toString()+"]");
+										ajax1('http://www.nbinbi.com/waterObj/index.php/Admin/Complex/deleteRateSingleById',"["+arrFlag1.toString()+"]",page)
+											
+									});
+									$(".cancel").click(function(){
+										$('.mainMenualert').hide();
+										$('.s1').css('display','none');
+									});
+								}
+							});						
+						}
+					});
+				}	
+				function ajax1(Url,Flag,Page){
+					console.log(Url,Flag,Page)
+					$.ajax({
+						url:Url,	
+						method:"get",
+						dataType:"jsonp",
+						data:{"rsid":Flag},
+						success: function(data){
+							console.log(data);
+							try{
+								alert(data.msg);
+								location.reload(true);//**************
+							}catch(e){
+							}
+						}
+					});
+					
+				}
+							
+        </script>
+       	</div>    
+    </div>
+	</body>
+</html>

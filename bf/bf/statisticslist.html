@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+        <script type="text/javascript" src="js/3.js"></script>
+        <script type="text/javascript" src="js/jquery.page.js"></script>
+	</head>
+	<body>		
+    	<div class="statisticslist_ul addcarCon">
+                	<ul>
+                        <li>
+                            <select class="city_numO" onchange="sheng(this.value)">
+                                <option>请选择省份</option>
+                            </select>
+                        </li>  
+                        <li>          
+                            <select class="city_numT" onchange="cheng(this.value)">
+                                <option>请选择城市</option>
+                            </select>
+                        </li> 
+                        <li>
+                            <select class="city_numF" onchange="aheng(this.value)">
+                                <option>请选择城市</option>
+                            </select>
+                         </li>
+                         <li>   							
+                            <select class="city_numS" onchange="hheng()">
+                                <option>请选择楼盘</option>
+                            </select>
+                        </li> 
+                        <li><select class="people">
+								<option>请选择负责人</option>
+						    </select>
+						</li>
+						<li><select class="clearPeople">
+								<option>请选择清洗人</option>
+						    </select>
+						</li>                          
+                	</ul>
+                    <div class="dateBtn">
+                        	<input type="date"  name="user_date" />
+                    </div>
+                    <div class="statisticslist_button">
+                        <button class="statisticslist_button_reach">查询</button>
+                      	<a href="javascript:void(0);" class="statisticslist_button_list">导出清单</a>
+                    </div>
+                </div>
+            	<div class="admin_listcontent">
+                	<table>
+                        <thead>
+                        	<tr>
+                            	<td>清洗时间</td>
+                            	<td>楼盘</td>
+                            	<td>车主姓名</td>
+                            	<td>联系方式</td>
+                            	<td>车牌号</td>
+                            	<td>车位</td>
+                            	<td>清洗类型</td>
+                            	<td>负责人</td>
+                            	<td>清洗人</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="tcdPageCode"></div>
+                </div>
+                 
+       <script>
+	   	cityO();
+		carType();
+		person();
+		clearPeople();
+		function person(val){
+			$.ajax({
+				url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/taskList",
+				method:"get",
+				dataType:"jsonp",
+				success: function(data){
+					//console.log(data);
+					if(data.status==1){
+						$.each(data.data,function(index,val){
+							$(".people").append('<option class="select">'+val.wname+'</option>');
+						})
+					}	
+				}
+			})
+		}
+		
+		
+		function clearPeople(){
+			$.ajax({
+				url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/workerList",
+				method:"get",
+				dataType:"jsonp",
+				success: function(data){
+					//console.log(data);
+					if(data.status==1){
+						$.each(data.data,function(index,val){
+							$(".clearPeople").append('<option class="select">'+val.wname+'</option>');
+						})
+					}
+				}	
+			});
+			
+		}
+		
+		
+		$('.city_numS').change(function(){
+			var oid=window.localStorage.getItem('oid');
+			//console.log(oid);
+		});
+	$('.statisticslist_button_reach').click(function(){
+		 var vid=oid;
+		 var name=($('.people option:checked').val()&&$('.people option:checked').val()!="请选择负责人")?$('.people option:checked').val():"";
+		 var wname=($('.clearPeople option:checked').val()&&$('.clearPeople option:checked').val()!="请选择清洗人")?$('.clearPeople option:checked').val():"";
+		 var finishdate=$('.dateBtn input').val();
+		 console.log(vid,name,wname,finishdate);
+		 if(!vid && !name && !wname && !finishdate){
+            alert("请至少选择一项内容");
+            return;
+        }
+		fullAdminList(1,function (count){
+			$(".tcdPageCode").createPage({
+			  pageCount:count,
+			  current:1,
+			  backFn:function(p){
+				fullAdminList(p)
+			  }
+			});
+		});
+		function resetDataArray(data){
+			var result=[];
+			data.forEach(function (item,index){
+				if(Object.prototype.toString.call(item)==='[object Array]'){
+					item.forEach(function (item1,index1){
+						result.push(item1);
+					});
+				}else{
+					result.push(item);
+				}
+			});
+			window.newData=result;
+		}
+		function fullAdminList(page,fn){			
+			!page&&(page=1);
+			$.ajax({
+				url:"http://www.nbinbi.com/waterObj/index.php/Admin/Complex/selectLogsByVid",	
+				method:"get",
+				dataType:"jsonp",
+				data:{"page":page,"vid":vid,"name":name,"wname":wname,"finishdate":finishdate},
+				success:function(data){
+					resetDataArray(data.data);
+					console.log(window.newData.length,window.newData.length/14)
+					if(data.status = 1){
+						var count =Math.ceil(data.len/14);
+						var str='';
+						$.each(window.newData,function(index,Nval){
+							if(index>=14)return;
+							str+="<tr>"+
+								"<td>"+Nval.finishdate+"</td>"+
+								"<td>"+Nval.building+"</td>"+
+								"<td>"+Nval.username+"</td>"+
+								"<td>"+Nval.phonenum+"</td>"+
+								"<td>"+Nval.carnum+"</td>"+
+								"<td>"+Nval.park+"</td>"+
+								"<td>"+Nval.optype+"</td>"+
+								"<td>"+Nval.name+"</td>"+
+								"<td>"+Nval.wname+"</td>"+
+							"</tr>"
+						});
+						$('.admin_listcontent').find('tbody').html(str);
+						fn&&fn(count);	
+					}
+					
+				}
+			});
+			window.localStorage.setItem('page',page)
+		}
+	});
+	//导出清单
+		$('.statisticslist_button_list').bind('click',function(){
+		 var vid=oid;
+		 var name=($('.people option:checked').val()&&$('.people option:checked').val()!="请选择负责人")?$('.people option:checked').val():"";
+		 var wname=($('.clearPeople option:checked').val()&&$('.clearPeople option:checked').val()!="请选择清洗人")?$('.clearPeople option:checked').val():"";
+		 var finishdate=$('.dateBtn input').val(); 
+		 if(!vid && !name && !wname && !finishdate){
+            alert("请至少选择一项内容");
+            return;
+         }
+			var oPage=window.localStorage.getItem('page');
+			this.href="http://www.nbinbi.com/waterObj/index.php/Admin/Complex/exportLogsByExcel?page="+oPage+"&name="+name+"&wname="+wname+"&finishdate="+finishdate+"&_="+Math.random()*1000;
+		});
+       </script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>	
+		<script type="text/javascript" src="js/login.js" ></script>
+		<script type="text/javascript" src="js/cookie.js"></script>
+	</head>
+	<body style="background-color: #2f435b;">
+		<div class="logincenter">
+			<div class="loginimg">
+				<img src="img/logo.png" width="140px" height="130px"/>
+			</div>
+			<div class="logininput">
+				<span>微特尔洗车服务管理平台</span>
+				<div class="logininput_input">
+					<div><img src="img/administrator.png" /></div>
+					<input type="text" placeholder="用户名"  class="phoneNum" />
+				</div>
+				<div class="logininput_input">
+					<div><img src="img/password.png" /></div>
+					<input type="password" placeholder="密码" class="pwd"/>
+				</div>
+				<div class="loggintishi" style="background-color:#2f435b;">请输入正确信息！</div>
+			</div>
+			<input type="button" value="登录" class="login_bttton"></input>		
+		</div>
+	</body>
+</html>
